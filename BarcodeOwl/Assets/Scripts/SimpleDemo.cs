@@ -18,6 +18,7 @@ public class SimpleDemo : MonoBehaviour {
 	public AudioSource Audio;
 	public string openFoodFacts ="https://world.openfoodfacts.org/api/v2/product/";
 
+
 	// Disable Screen Rotation on that screen
 	void Awake()
 	{
@@ -124,7 +125,7 @@ public class SimpleDemo : MonoBehaviour {
 	{
 		// Try to stop the camera before loading another scene
 		StartCoroutine(StopCamera(() => {
-			SceneManager.LoadScene("Boot");
+			SceneManager.LoadScene(0);
 		}));
 	}
 

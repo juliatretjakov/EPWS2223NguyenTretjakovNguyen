@@ -1,0 +1,14 @@
+{
+    "product": [
+        {
+            "name":"TonysMilk",
+            "eco":1,
+            "nutri":2
+        },
+	{
+            "name":"NamisMilk",
+            "eco":1,
+            "nutri":1
+        }
+    ]
+}

@@ -511,7 +511,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 103870421}
-        m_TargetAssemblyTypeName: 
+        m_TargetAssemblyTypeName: SimpleDemo, Assembly-CSharp
         m_MethodName: ClickBack
         m_Mode: 1
         m_Arguments:
