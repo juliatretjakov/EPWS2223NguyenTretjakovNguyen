@@ -1,15 +1,9 @@
-using BarcodeScanner;
-using BarcodeScanner.Scanner;
-using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using Wizcorp.Utils.Logger;
-using System.Net;
-using System.IO;
 using TMPro;
-using JSON;
+
 
 public class ShowList : MonoBehaviour
 {

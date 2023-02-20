@@ -2,20 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using JSON;
+using OpenFoodFactsProduct;
 
 public class ButtonListControl : MonoBehaviour
 {   
-    public JSONReader reader;
+    public ScanListControl ScanController;
     [SerializeField]
     private GameObject buttonTemplate;
 
     void Start(){
-        for (int i=0; i<reader.getLength(); i++){
+        ScanController.readScanList();
+        for (int i=0; i<ScanController.GetLength(); i++){
             GameObject button= Instantiate(buttonTemplate) as GameObject;
             button.SetActive(true);
             
-            button.GetComponent<ButtonListButton>().SetText(reader.getProduct(i).toString());
+            button.GetComponent<ButtonListButton>().SetText(ScanController.GetProduct(i).product.product_name);
             button.transform.SetParent(buttonTemplate.transform.parent,false);
         }
     }

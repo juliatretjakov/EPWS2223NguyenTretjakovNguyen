@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FeedingScanner.unity
     guid: 93c1548587961484cb231b7f9c4a0734
+  - enabled: 1
+    path: Assets/Scenes/ProductFound.unity
+    guid: 137b5fb95cfb353439ca8a44e1fd68e1
   m_configObjects: {}
