@@ -41,14 +41,36 @@ namespace OpenFoodFactsProduct{
                 tmp[0]=newItem;
                 scan=tmp;
             }
+        }
 
-
+        public void setListTo(SearchResult newList){
+            Scan[] tmp=new Scan[newList.products.Count()];
+            for(int i=0;i<newList.products.Count();i++){
+                Scan tmpScan=new Scan(newList.products[i].code,newList.products[i]);
+                tmp[i]=tmpScan;
+            }
+            scan=tmp;
         }
 
         public void ClearScanList(){
             Scan[] tmp= new Scan[0];
             scan = tmp;
         }
+
+        public int getScanCountToday(){
+            int count=0;
+            DateTime yesterday = DateTime.Today.AddDays(-1);
+            Debug.Log(yesterday.ToString());
+            if(!isEmpty()){
+                for(int i=GetLength()-1;i>=0;i--){
+                   // if(scan[i].GetScanTimeAsDateTime>=yesterday){
+                  //      count++;
+                  //  }
+                }
+            }
+            return count;
+        }
+
 
         private bool isEmpty(){
             if(GetLength()<=0){

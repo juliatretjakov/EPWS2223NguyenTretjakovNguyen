@@ -39,8 +39,16 @@ public class ScanListControl : MonoBehaviour
             myScanList.AddProduct(newItem);
         }
 
+        public void setListTo(SearchResult newList){
+            myScanList.setListTo(newList);
+        }
+
         public void ClearScanList(){
             myScanList.ClearScanList();
+        }
+
+        public int getScanCountToday(){
+           return myScanList.getScanCountToday();
         }
 
         public void writeScanList(string path){

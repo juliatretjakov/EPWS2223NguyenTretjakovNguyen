@@ -6,12 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Hauptmenu.unity
+    path: Assets/Scenes/1-Hauptmenu.unity
     guid: 3466c8dadf605e442827474c89cc7a11
   - enabled: 1
-    path: Assets/Scenes/ScannerScreen.unity
+    path: Assets/Scenes/2-ScannerScreen.unity
     guid: 93c1548587961484cb231b7f9c4a0734
   - enabled: 1
-    path: Assets/Scenes/ProductFound.unity
+    path: Assets/Scenes/5-ProductFound.unity
     guid: 137b5fb95cfb353439ca8a44e1fd68e1
+  - enabled: 1
+    path: Assets/Scenes/4-SearchResults.unity
+    guid: 4112edf80a8530d41972609d0e852ec9
   m_configObjects: {}

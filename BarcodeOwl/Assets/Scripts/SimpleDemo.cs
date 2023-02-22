@@ -17,9 +17,8 @@ public class SimpleDemo : MonoBehaviour {
 	public Text TextHeader;
 	public RawImage Image;
 	public AudioSource Audio;
-	public ScanListControl myScanListControl;
+	public PlayerControl playerData;
 	private string openFoodFacts ="https://world.openfoodfacts.org/api/v2/product/";
-	private string historyPath;
 
 
 	// Disable Screen Rotation on that screen
@@ -34,7 +33,7 @@ public class SimpleDemo : MonoBehaviour {
 		BarcodeScanner = new Scanner();
 		BarcodeScanner.Camera.Play();
 
-		myScanListControl.readScanList(historyPath);
+		playerData.readHistory();
 		// Display the camera texture through a RawImage
 		BarcodeScanner.OnReady += (sender, arg) => {
 			// Set Orientation & Texture
@@ -103,8 +102,8 @@ public class SimpleDemo : MonoBehaviour {
 				StreamReader reader = new StreamReader(response.GetResponseStream());
 				string jsonData=reader.ReadToEnd();
 				Scan jsonObj = JsonUtility.FromJson<Scan>(jsonData);
-				myScanListControl.AddProduct(jsonObj);
-				myScanListControl.writeScanList(historyPath);				
+				playerData.addProductToHistory(jsonObj);
+				playerData.writeHistory();				
 			//}
 
 			response.Close();
@@ -137,26 +136,13 @@ public class SimpleDemo : MonoBehaviour {
 		}));
 	}
 
-	public void ClickBag(){
-		// Try to stop the camera before loading another scene
-		StartCoroutine(StopCamera(() => {
-			SceneManager.LoadScene(2);
-		}));
-	}
-
 	public void ClickHistory(){
-				// Try to stop the camera before loading another scene
-		StartCoroutine(StopCamera(() => {
-			SceneManager.LoadScene(3);
-		}));
-	}
-
-	public void ClickManualSearch(){
 				// Try to stop the camera before loading another scene
 		StartCoroutine(StopCamera(() => {
 			SceneManager.LoadScene(4);
 		}));
 	}
+
 
 	/// <summary>
 	/// This coroutine is used because of a bug with unity (http://forum.unity3d.com/threads/closing-scene-with-active-webcamtexture-crashes-on-android-solved.363566/)

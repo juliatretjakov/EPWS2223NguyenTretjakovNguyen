@@ -35,6 +35,8 @@ public class ManualSearchControl : MonoBehaviour
 			StreamReader reader = new StreamReader(response.GetResponseStream());
 			string jsonData=reader.ReadToEnd();
 			Scan jsonObj = JsonUtility.FromJson<Scan>(jsonData);
+							string jsonString= JsonUtility.ToJson(jsonObj);
+            	File.WriteAllText("Assets\\Resources\\testDump.txt", jsonString);
 			playerData.addProductToHistory(jsonObj);
             playerData.writeHistory();
             response.Close();
@@ -48,13 +50,15 @@ public class ManualSearchControl : MonoBehaviour
     	    }
 		}else{
 			try {
-				HttpWebRequest request= (HttpWebRequest)WebRequest.Create(searchURL+searchString+"&json=1&page="+page+"&fields=product_name,nutriscore_grade,ecoscore_grade");
+				HttpWebRequest request= (HttpWebRequest)WebRequest.Create(searchURL+searchString+"&json=1&page="+page+"&fields=code,product_name,nutriscore_grade,ecoscore_grade");
 				HttpWebResponse response=(HttpWebResponse)request.GetResponse();
 				StreamReader reader = new StreamReader(response.GetResponseStream());
 				string jsonData=reader.ReadToEnd();
-				Scan jsonObj = JsonUtility.FromJson<Scan>(jsonData);
-				playerData.addProductToSearchResults(jsonObj);
-                playerData.writeSearchResults();
+				SearchResult jsonObj = JsonUtility.FromJson<SearchResult>(jsonData);
+				string jsonString= JsonUtility.ToJson(jsonObj);
+            	File.WriteAllText("Assets\\Resources\\testDump.txt", jsonString);
+				Debug.Log(jsonObj.ToString());
+                playerData.writeSearchResults(jsonObj);
                 StartCoroutine(barCodeScannerControl.StopCamera(() => {
 			    SceneManager.LoadScene(3);
             	}));

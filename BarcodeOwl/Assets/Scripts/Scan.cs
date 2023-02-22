@@ -26,6 +26,10 @@ namespace OpenFoodFactsProduct{
                 this.scanTime=currentTime.ToString("f",CultureInfo.GetCultureInfo("de-DE"));
             }
 
+            public DateTime GetScanTimeAsDateTime(){
+                return DateTime.Parse(scanTime, CultureInfo.GetCultureInfo("de-DE"));
+            }
+
             public override string ToString(){
                 return code+" "+product.ToString()+""+scanTime;
             }
@@ -36,11 +40,13 @@ namespace OpenFoodFactsProduct{
             public string product_name;
             public string ecoscore_grade;
             public string nutriscore_grade;
+            public string code;
 
-            public Product(string product_name, string ecoscore_grade,string nutriscore_grade){
+            public Product(string product_name, string ecoscore_grade,string nutriscore_grade, string code){
                 this.product_name=product_name;
                 this.ecoscore_grade=ecoscore_grade;
                 this.nutriscore_grade=nutriscore_grade;
+                this.code=code;
             }
 
             public override string ToString(){

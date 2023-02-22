@@ -4,20 +4,19 @@ using UnityEngine;
 using UnityEngine.UI;
 using OpenFoodFactsProduct;
 
-public class ButtonListControl : MonoBehaviour
+public class HistoryButtonListControl : MonoBehaviour
 {   
-    public ScanListControl ScanController;
-    public string historyPath;
+    public PlayerControl playerData;
     [SerializeField]
     private GameObject buttonTemplate;
 
     void Start(){
-        ScanController.readScanList(historyPath);
-        for (int i=0; i<ScanController.GetLength(); i++){
+        playerData.readHistory();
+        for (int i=0; i<playerData.historyControl.GetLength(); i++){
             GameObject button= Instantiate(buttonTemplate) as GameObject;
             button.SetActive(true);
             
-            button.GetComponent<ButtonListButton>().SetText(ScanController.GetProduct(i).product.product_name);
+            button.GetComponent<ButtonListButton>().SetText(playerData.historyControl.GetProduct(i).product.product_name);
             button.transform.SetParent(buttonTemplate.transform.parent,false);
         }
     }

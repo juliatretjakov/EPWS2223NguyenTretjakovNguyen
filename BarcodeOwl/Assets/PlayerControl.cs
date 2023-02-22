@@ -4,15 +4,15 @@ using UnityEngine;
 using OpenFoodFactsProduct;
 
 public class PlayerControl : MonoBehaviour
-{
+{   public Player player=new Player();
     public ScanListControl historyControl;
     public ScanListControl searchResultsControl;
     public ScanListControl comfortFoodControl;
-    public Player player;
+    public ScanListControl feedHistoryControl;
+    
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     public void readHistory(){
@@ -27,17 +27,27 @@ public class PlayerControl : MonoBehaviour
         comfortFoodControl.readScanList(player.comfortFoodPath);
     }
 
+    public void readFeedHistory(){
+        historyControl.readScanList(player.historyPath);
+    }
+
     public void writeHistory(){
         historyControl.writeScanList(player.historyPath);
     }
 
-    public void writeSearchResults(){
+    public void writeSearchResults(SearchResult newResults){
+        searchResultsControl.setListTo(newResults);
         searchResultsControl.writeScanList(player.searchResultPath);
     }
 
     public void writeComfortFood(){
         comfortFoodControl.writeScanList(player.comfortFoodPath);
     }
+
+    public void writeFeedHistory(){
+        historyControl.writeScanList(player.historyPath);
+    }
+
 
     public void addProductToHistory(Scan newItem){
         historyControl.AddProduct(newItem);
@@ -47,6 +57,11 @@ public class PlayerControl : MonoBehaviour
     }
     public void addProductToComfortFood(Scan newItem){
         comfortFoodControl.AddProduct(newItem);
+    }
+
+
+    public int getScanCountToday(){
+        return feedHistoryControl.getScanCountToday();
     }
 
     // Update is called once per frame
