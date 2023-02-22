@@ -10,14 +10,15 @@ public class ScanListControl : MonoBehaviour
     {
         public ScanList myScanList;
 
+
         // Start is called before the first frame update
         void Start()
         {
            
         }
 
-        public void readScanList(){
-            string jsonText = System.IO.File.ReadAllText("Assets\\Resources\\JSONText.txt");
+        public void readScanList(string path){
+            string jsonText = System.IO.File.ReadAllText(path);
             myScanList = JsonUtility.FromJson<ScanList>(jsonText);
         }
 
@@ -38,9 +39,13 @@ public class ScanListControl : MonoBehaviour
             myScanList.AddProduct(newItem);
         }
 
-        public void writeScanList(){
+        public void ClearScanList(){
+            myScanList.ClearScanList();
+        }
+
+        public void writeScanList(string path){
             string jsonString= JsonUtility.ToJson(myScanList);
-            File.WriteAllText("Assets\\Resources\\JSONText.txt", jsonString);
+            File.WriteAllText(path, jsonString);
         }
 
     }

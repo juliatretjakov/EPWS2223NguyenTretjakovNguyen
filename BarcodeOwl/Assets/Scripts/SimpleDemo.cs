@@ -18,7 +18,8 @@ public class SimpleDemo : MonoBehaviour {
 	public RawImage Image;
 	public AudioSource Audio;
 	public ScanListControl myScanListControl;
-	public string openFoodFacts ="https://world.openfoodfacts.org/api/v2/product/";
+	private string openFoodFacts ="https://world.openfoodfacts.org/api/v2/product/";
+	private string historyPath;
 
 
 	// Disable Screen Rotation on that screen
@@ -33,7 +34,7 @@ public class SimpleDemo : MonoBehaviour {
 		BarcodeScanner = new Scanner();
 		BarcodeScanner.Camera.Play();
 
-		myScanListControl.readScanList();
+		myScanListControl.readScanList(historyPath);
 		// Display the camera texture through a RawImage
 		BarcodeScanner.OnReady += (sender, arg) => {
 			// Set Orientation & Texture
@@ -102,15 +103,14 @@ public class SimpleDemo : MonoBehaviour {
 				StreamReader reader = new StreamReader(response.GetResponseStream());
 				string jsonData=reader.ReadToEnd();
 				Scan jsonObj = JsonUtility.FromJson<Scan>(jsonData);
-				myScanListControl.AddProduct(jsonObj);					
+				myScanListControl.AddProduct(jsonObj);
+				myScanListControl.writeScanList(historyPath);				
 			//}
-			myScanListControl.writeScanList();
-			response.Close();
-			StartCoroutine(StopCamera(() => {
 
-				
-			}));
+			response.Close();
+		StartCoroutine(StopCamera(() => {
 			SceneManager.LoadScene(2);
+		}));
 		}catch(WebException e){
             Debug.Log((int)((HttpWebResponse)e.Response).StatusCode);
 			//EcoScore.text= string.Format("{0}",(int)((HttpWebResponse)e.Response).StatusCode);

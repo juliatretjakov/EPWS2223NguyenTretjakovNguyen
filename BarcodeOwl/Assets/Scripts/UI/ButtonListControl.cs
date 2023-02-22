@@ -7,11 +7,12 @@ using OpenFoodFactsProduct;
 public class ButtonListControl : MonoBehaviour
 {   
     public ScanListControl ScanController;
+    public string historyPath;
     [SerializeField]
     private GameObject buttonTemplate;
 
     void Start(){
-        ScanController.readScanList();
+        ScanController.readScanList(historyPath);
         for (int i=0; i<ScanController.GetLength(); i++){
             GameObject button= Instantiate(buttonTemplate) as GameObject;
             button.SetActive(true);

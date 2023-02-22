@@ -45,6 +45,10 @@ namespace OpenFoodFactsProduct{
 
         }
 
+        public void ClearScanList(){
+            Scan[] tmp= new Scan[0];
+            scan = tmp;
+        }
 
         private bool isEmpty(){
             if(GetLength()<=0){

@@ -14,10 +14,11 @@ public class ShowProductScore : MonoBehaviour
 
     public ScanListControl myScanListControl;
     public OpenPanel openPanel;
+    public string historyPath;
     
     // Start is called before the first frame update
     void Start(){
-        myScanListControl.readScanList();
+        myScanListControl.readScanList(historyPath);
         FillText();
     }
 

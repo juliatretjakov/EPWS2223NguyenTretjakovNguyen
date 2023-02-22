@@ -366,8 +366,8 @@ GameObject:
   - component: {fileID: 103870416}
   - component: {fileID: 103870422}
   - component: {fileID: 103870424}
-  - component: {fileID: 103870425}
   - component: {fileID: 103870426}
+  - component: {fileID: 103870427}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -563,22 +563,8 @@ MonoBehaviour:
   ecoScoreText: {fileID: 399249500}
   nutriScoreText: {fileID: 706530861}
   nutrimentText: {fileID: 33917133}
-  myScanListControl: {fileID: 103870425}
+  myScanListControl: {fileID: 103870427}
   openPanel: {fileID: 103870426}
---- !u!114 &103870425
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 103870415}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89a83f28ab6d11f49ab1f437856b2117, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myScanList:
-    scan: []
 --- !u!114 &103870426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -592,6 +578,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AnotherPanel: {fileID: 856506222}
+--- !u!114 &103870427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 103870415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39dcb985c76aa504aa2bca94c3f8e9d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myScanList:
+    scan: []
 --- !u!1 &275538404
 GameObject:
   m_ObjectHideFlags: 0
