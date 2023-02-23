@@ -717,3 +717,27 @@ Received Import Request.
   path: Assets/Scenes/6-Login.unity
   artifactKey: Guid(bbf1566051a8d4bf2b2f2f81e029f1c0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
 Start importing Assets/Scenes/6-Login.unity using Guid(bbf1566051a8d4bf2b2f2f81e029f1c0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '99575a7ee882e283a3dfb8ea1936f578') in 0.001009 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 114.472167 seconds.
+  path: Assets/Scenes/6-Login.unity
+  artifactKey: Guid(bbf1566051a8d4bf2b2f2f81e029f1c0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/6-Login.unity using Guid(bbf1566051a8d4bf2b2f2f81e029f1c0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '99393aa36cd47ce921c9a50c677bc499') in 0.001040 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 38.153391 seconds.
+  path: Assets/Scenes/6-Login.unity
+  artifactKey: Guid(bbf1566051a8d4bf2b2f2f81e029f1c0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/6-Login.unity using Guid(bbf1566051a8d4bf2b2f2f81e029f1c0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3c1cfca911842d2a5ec6d5f7a01a52e7') in 0.001018 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 815.948041 seconds.
+  path: Assets/Scenes/6-Login.unity
+  artifactKey: Guid(bbf1566051a8d4bf2b2f2f81e029f1c0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/6-Login.unity using Guid(bbf1566051a8d4bf2b2f2f81e029f1c0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '630b2eb742a295ba9ab8c15e7d74b80a') in 0.001125 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 728.833423 seconds.
+  path: Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Fallback.asset
+  artifactKey: Guid(2e498d1c8094910479dc3e1b768306a4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Fallback.asset using Guid(2e498d1c8094910479dc3e1b768306a4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4440c2d7ea0bd6214400c527d4e8e6e9') in 0.760741 seconds 
