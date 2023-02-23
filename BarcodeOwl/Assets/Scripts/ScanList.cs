@@ -59,13 +59,11 @@ namespace OpenFoodFactsProduct{
 
         public int getScanCountToday(){
             int count=0;
-            DateTime yesterday = DateTime.Today.AddDays(-1);
-            Debug.Log(yesterday.ToString());
             if(!isEmpty()){
                 for(int i=GetLength()-1;i>=0;i--){
-                   // if(scan[i].GetScanTimeAsDateTime>=yesterday){
-                  //      count++;
-                  //  }
+                    if(DateTime.Compare(scan[i].GetScanTimeAsDateTime(),DateTime.Today)>=0){
+                        count++;
+                    }
                 }
             }
             return count;

@@ -4,19 +4,27 @@ using UnityEngine;
 using TMPro;
 public class FairyPanelControl : MonoBehaviour
 {
-    PlayerControl playerData;
-    TMP_Text scanCount;
-    TMP_Text drinksCount;
+    public PlayerControl playerData;
+    public TMP_Text scanCount;
+    public TMP_Text drinksCount;
 
     // Start is called before the first frame update
     void Start()
-    {
-        setText();
+    {   
+        playerData.readFeedHistory();
+        playerData.player.addDrink();
+        playerData.player.addDrink();
+        playerData.player.addDrink();
+        updateScanCountText();
+        updateDrinkCountText();
     }
 
-    public void setText(){
-        scanCount.text="/3";
-        drinksCount.text="/6";
+    public void updateScanCountText(){
+        scanCount.text=playerData.getScanCountToday()+"/3";
+    }
+
+   public void updateDrinkCountText(){
+        drinksCount.text=playerData.player.getDrinksToday()+"/6";
     }
 
     // Update is called once per frame

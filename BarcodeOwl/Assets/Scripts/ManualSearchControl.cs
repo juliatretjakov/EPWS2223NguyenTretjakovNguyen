@@ -58,7 +58,7 @@ public class ManualSearchControl : MonoBehaviour
 				string jsonString= JsonUtility.ToJson(jsonObj);
             	File.WriteAllText("Assets\\Resources\\testDump.txt", jsonString);
 				Debug.Log(jsonObj.ToString());
-                playerData.writeSearchResults(jsonObj);
+                playerData.setSearchResults(jsonObj);
                 StartCoroutine(barCodeScannerControl.StopCamera(() => {
 			    SceneManager.LoadScene(3);
             	}));

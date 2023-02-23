@@ -13,8 +13,15 @@ public class PlayerControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        readHistory();
+        readSearchResults();
+        readComfortFood();
+        readFeedHistory();
     }
 
+    /**
+        read Lists functions
+    */
     public void readHistory(){
         historyControl.readScanList(player.historyPath);
     }
@@ -28,14 +35,21 @@ public class PlayerControl : MonoBehaviour
     }
 
     public void readFeedHistory(){
-        historyControl.readScanList(player.historyPath);
+        feedHistoryControl.readScanList(player.feedHistoryPath);
     }
 
+    /**
+        write Lists functions
+    */
     public void writeHistory(){
         historyControl.writeScanList(player.historyPath);
     }
 
-    public void writeSearchResults(SearchResult newResults){
+    public void writeSearchResults(){
+        searchResultsControl.writeScanList(player.searchResultPath);
+    }
+
+    public void setSearchResults(SearchResult newResults){
         searchResultsControl.setListTo(newResults);
         searchResultsControl.writeScanList(player.searchResultPath);
     }
@@ -45,10 +59,12 @@ public class PlayerControl : MonoBehaviour
     }
 
     public void writeFeedHistory(){
-        historyControl.writeScanList(player.historyPath);
+        feedHistoryControl.writeScanList(player.feedHistoryPath);
     }
 
-
+    /**
+        add new Item to Lists Functions
+    */
     public void addProductToHistory(Scan newItem){
         historyControl.AddProduct(newItem);
     }
@@ -58,15 +74,32 @@ public class PlayerControl : MonoBehaviour
     public void addProductToComfortFood(Scan newItem){
         comfortFoodControl.AddProduct(newItem);
     }
-
-
-    public int getScanCountToday(){
-        return feedHistoryControl.getScanCountToday();
+    public void addProductToFoodHistory(Scan newItem){
+        feedHistoryControl.AddProduct(newItem);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    /**
+        Save and Reset PlayerData Functions
+    */
+    public void savePlayerData(){
+        writeHistory();
+        writeSearchResults();
+        writeComfortFood();
+        writeFeedHistory();
+    }
+
+    public void resetPlayerData(){
+        historyControl.ClearScanList();
+        searchResultsControl.ClearScanList();
+        comfortFoodControl.ClearScanList();
+        feedHistoryControl.ClearScanList();
+        savePlayerData();
+    }
+
+    /**
+        otherFunctions
+    */
+    public int getScanCountToday(){
+        return feedHistoryControl.getScanCountToday();
     }
 }
