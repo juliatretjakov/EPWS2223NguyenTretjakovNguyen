@@ -30,7 +30,7 @@ public class ManualSearchControl : MonoBehaviour
     public void SendSearchRequest(string searchString, int page){
     if(searchString.All(char.IsDigit)){
 		try {
-			HttpWebRequest request= (HttpWebRequest)WebRequest.Create(barcodeSearch+searchString+"/?fields=product_name,nutriscore_grade,ecoscore_grade");
+			HttpWebRequest request= (HttpWebRequest)WebRequest.Create(barcodeSearch+searchString+"/?fields=product_name,nutriscore_grade,ecoscore_grade,image_front_url");
 			HttpWebResponse response=(HttpWebResponse)request.GetResponse();
 			StreamReader reader = new StreamReader(response.GetResponseStream());
 			string jsonData=reader.ReadToEnd();
@@ -50,7 +50,7 @@ public class ManualSearchControl : MonoBehaviour
     	    }
 		}else{
 			try {
-				HttpWebRequest request= (HttpWebRequest)WebRequest.Create(searchURL+searchString+"&json=1&page="+page+"&fields=code,product_name,nutriscore_grade,ecoscore_grade");
+				HttpWebRequest request= (HttpWebRequest)WebRequest.Create(searchURL+searchString+"&json=1&page="+page+"&fields=code,product_name,nutriscore_grade,ecoscore_grade,image_front_url");
 				HttpWebResponse response=(HttpWebResponse)request.GetResponse();
 				StreamReader reader = new StreamReader(response.GetResponseStream());
 				string jsonData=reader.ReadToEnd();

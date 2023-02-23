@@ -96,7 +96,7 @@ public class SimpleDemo : MonoBehaviour {
 	public void GetScores(string barCodeValue){
 		try {
 			//webReq.url=string.Format= openfoodfacts+barCodeValue+"/?fields=product_name,nutriscore_grade,ecoscore_grade";
-			HttpWebRequest request= (HttpWebRequest)WebRequest.Create(openFoodFacts+barCodeValue+"/?fields=product_name,nutriscore_grade,ecoscore_grade");
+			HttpWebRequest request= (HttpWebRequest)WebRequest.Create(openFoodFacts+barCodeValue+"/?fields=product_name,nutriscore_grade,ecoscore_grade,image_front_url");
 			HttpWebResponse response=(HttpWebResponse)request.GetResponse();
 			//if(response.StatusCode==HttpStatusCode.OK){
 				StreamReader reader = new StreamReader(response.GetResponseStream());

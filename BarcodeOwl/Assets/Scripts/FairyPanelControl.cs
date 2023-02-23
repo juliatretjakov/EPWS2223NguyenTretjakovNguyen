@@ -15,6 +15,7 @@ public class FairyPanelControl : MonoBehaviour
         playerData.player.addDrink();
         playerData.player.addDrink();
         playerData.player.addDrink();
+        playerData.player.addDrink();
         updateScanCountText();
         updateDrinkCountText();
     }

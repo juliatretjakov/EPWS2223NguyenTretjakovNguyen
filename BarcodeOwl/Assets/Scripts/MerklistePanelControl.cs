@@ -4,18 +4,26 @@ using UnityEngine;
 
 public class MerklistePanelControl : MonoBehaviour
 {
-   /* public PlayerControl playerData;
+    public PlayerControl playerData;
     [SerializeField]
     private GameObject buttonTemplate;
 
     void Start(){
-        playerData.read();
-        for (int i=0; i<playerData.historyControl.GetLength(); i++){
+        updateMerkliste();
+    }
+    
+    public void updateMerkliste(){
+        //playerData.read();
+        foreach (string element in playerData.player.Merkliste){
             GameObject button= Instantiate(buttonTemplate) as GameObject;
             button.SetActive(true);
             
-            button.GetComponent<ButtonListButton>().SetText(playerData.historyControl.GetProduct(i).product.product_name);
+            button.GetComponent<ButtonListButton>().SetText(element);
             button.transform.SetParent(buttonTemplate.transform.parent,false);
         }
-    }*/
+    }
+
+    public void AddNote(string newNote){
+        playerData.player.AddNote(newNote);
+    }
 }

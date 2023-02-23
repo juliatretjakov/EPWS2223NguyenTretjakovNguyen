@@ -41,13 +41,7 @@ namespace OpenFoodFactsProduct{
             public string ecoscore_grade;
             public string nutriscore_grade;
             public string code;
-
-            public Product(string product_name, string ecoscore_grade,string nutriscore_grade, string code){
-                this.product_name=product_name;
-                this.ecoscore_grade=ecoscore_grade;
-                this.nutriscore_grade=nutriscore_grade;
-                this.code=code;
-            }
+            public string image_front_url;
 
             public override string ToString(){
                 return product_name+" "+ecoscore_grade+" "+nutriscore_grade;

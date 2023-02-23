@@ -12,6 +12,7 @@ public class Player{
     public string feedHistoryPath="Assets\\Resources\\feedHistoryJSON.txt";
     private readonly int drinksSize=10;
     public Queue <DateTime> drinks=new Queue<DateTime>();
+    public List <string> Merkliste= new List<String>();
     
     public string GetName(){
         return name;
@@ -41,17 +42,13 @@ public class Player{
         return count;
     }
 
-/*
-    public string GetHistoryPath(){
-        return historyPath;
+    public void AddNote(string newNote){
+        Merkliste.Insert(0,newNote);
     }
 
-        public string GetSearchResultPath(){
-        return tmpSearchResultPath;
+    public void RemoveNoteAt(int index){
+        Merkliste.RemoveAt(index);
     }
 
-        public string GetComfortFoodPath(){
-        return comfortFoodPath;
-    }
-    */
+
 }

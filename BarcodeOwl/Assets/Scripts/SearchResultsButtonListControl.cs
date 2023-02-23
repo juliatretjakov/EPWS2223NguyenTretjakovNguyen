@@ -16,7 +16,8 @@ public class SearchResultsButtonListControl : MonoBehaviour
             GameObject button= Instantiate(buttonTemplate) as GameObject;
             button.SetActive(true);
             
-            button.GetComponent<ButtonListButton>().SetText(playerData.searchResultsControl.GetProduct(i).product.product_name);
+            button.GetComponent<SearchResultButtonListButton>().SetText(playerData.searchResultsControl.GetProduct(i).product.product_name);
+            button.GetComponent<SearchResultButtonListButton>().SetTexture(playerData.searchResultsControl.GetProduct(i).product.image_front_url);
             button.transform.SetParent(buttonTemplate.transform.parent,false);
         }
     }
