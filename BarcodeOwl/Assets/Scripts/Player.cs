@@ -6,19 +6,25 @@ using OpenFoodFactsProduct;
 
 public class Player{
     private string name;
+    public string playerDataPath="Assets\\Resources\\playerDataJSON.txt";
     public string historyPath="Assets\\Resources\\historyJSON.txt";
     public string searchResultPath="Assets\\Resources\\tmpSearchResultJSON.txt";
     public string comfortFoodPath="Assets\\Resources\\comfortFoodJSON.txt";
     public string feedHistoryPath="Assets\\Resources\\feedHistoryJSON.txt";
     private readonly int drinksSize=10;
     public Queue <DateTime> drinks=new Queue<DateTime>();
-    public List <string> Merkliste= new List<String>();
+    public List <MerklisteElement> Merkliste= new List<MerklisteElement>();
+    public Scan selectedScan;
     
     public string GetName(){
         return name;
     }
 
-    public void addDrink(){
+    public void SetSelectedScan(Scan newScan){
+        selectedScan=newScan;
+    }
+
+    public void AddDrink(){
         if(drinks.Count<=drinksSize){
             drinks.Enqueue(DateTime.Now);
         }else{
@@ -27,7 +33,7 @@ public class Player{
         }
     }
 
-    public int getDrinksToday(){
+    public int GetDrinkCountToday(){
         int count=0;
         Debug.Log("hey ich bims");
         if(drinks!=null){
@@ -42,8 +48,9 @@ public class Player{
         return count;
     }
 
-    public void AddNote(string newNote){
-        Merkliste.Insert(0,newNote);
+    public void AddMerklisteElement(string newNote){
+        MerklisteElement newElement= new MerklisteElement(newNote);
+        Merkliste.Insert(0,newElement);
     }
 
     public void RemoveNoteAt(int index){

@@ -18,6 +18,7 @@ public class SimpleDemo : MonoBehaviour {
 	public RawImage Image;
 	public AudioSource Audio;
 	public PlayerControl playerData;
+	public OpenPanel panelOpener;
 	private string openFoodFacts ="https://world.openfoodfacts.org/api/v2/product/";
 
 
@@ -33,7 +34,7 @@ public class SimpleDemo : MonoBehaviour {
 		BarcodeScanner = new Scanner();
 		BarcodeScanner.Camera.Play();
 
-		playerData.readHistory();
+		playerData.ReadHistory();
 		// Display the camera texture through a RawImage
 		BarcodeScanner.OnReady += (sender, arg) => {
 			// Set Orientation & Texture
@@ -98,13 +99,15 @@ public class SimpleDemo : MonoBehaviour {
 			//webReq.url=string.Format= openfoodfacts+barCodeValue+"/?fields=product_name,nutriscore_grade,ecoscore_grade";
 			HttpWebRequest request= (HttpWebRequest)WebRequest.Create(openFoodFacts+barCodeValue+"/?fields=product_name,nutriscore_grade,ecoscore_grade,image_front_url");
 			HttpWebResponse response=(HttpWebResponse)request.GetResponse();
-			//if(response.StatusCode==HttpStatusCode.OK){
+			if(response.StatusCode==HttpStatusCode.OK){
 				StreamReader reader = new StreamReader(response.GetResponseStream());
 				string jsonData=reader.ReadToEnd();
 				Scan jsonObj = JsonUtility.FromJson<Scan>(jsonData);
-				playerData.addProductToHistory(jsonObj);
-				playerData.writeHistory();				
-			//}
+				playerData.AddProductToHistory(jsonObj);
+				playerData.WriteHistory();
+				playerData.player.SetSelectedScan(jsonObj);
+				playerData.SavePlayerData();
+			}
 
 			response.Close();
 		StartCoroutine(StopCamera(() => {
@@ -112,10 +115,13 @@ public class SimpleDemo : MonoBehaviour {
 		}));
 		}catch(WebException e){
             Debug.Log((int)((HttpWebResponse)e.Response).StatusCode);
+			ClickStop();
+			panelOpener.PanelOpener();
+			ClickStart();
 			//EcoScore.text= string.Format("{0}",(int)((HttpWebResponse)e.Response).StatusCode);
         }
 	}
-/**
+
 	public void ClickStop()
 	{
 		if (BarcodeScanner == null)
@@ -126,7 +132,7 @@ public class SimpleDemo : MonoBehaviour {
 
 		// Stop Scanning
 		BarcodeScanner.Stop();
-	}*/
+	}
 
 	public void ClickBack()
 	{

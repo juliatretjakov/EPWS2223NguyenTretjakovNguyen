@@ -9,7 +9,7 @@ public class Quit : MonoBehaviour
     // Start is called before the first frame update
     public void clickQuit()
     {
-        playerData.savePlayerData();
+        playerData.SavePlayerData();
         Application.Quit();
     }
 }

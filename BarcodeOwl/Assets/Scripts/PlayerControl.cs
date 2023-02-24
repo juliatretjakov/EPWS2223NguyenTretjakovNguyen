@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using OpenFoodFactsProduct;
+using System.IO;
 
 public class PlayerControl : MonoBehaviour
 {   public Player player=new Player();
@@ -13,93 +14,97 @@ public class PlayerControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        readHistory();
-        readSearchResults();
-        readComfortFood();
-        readFeedHistory();
     }
 
     /**
-        read Lists functions
+        Read Lists functions
     */
-    public void readHistory(){
-        historyControl.readScanList(player.historyPath);
+    public void ReadHistory(){
+        historyControl.ReadScanList(player.historyPath);
     }
 
-    public void readSearchResults(){
-        searchResultsControl.readScanList(player.searchResultPath);
+    public void ReadSearchResults(){
+        searchResultsControl.ReadScanList(player.searchResultPath);
     }
 
-    public void readComfortFood(){
-        comfortFoodControl.readScanList(player.comfortFoodPath);
+    public void ReadComfortFood(){
+        comfortFoodControl.ReadScanList(player.comfortFoodPath);
     }
 
-    public void readFeedHistory(){
-        feedHistoryControl.readScanList(player.feedHistoryPath);
+    public void ReadFeedHistory(){
+        feedHistoryControl.ReadScanList(player.feedHistoryPath);
     }
 
     /**
-        write Lists functions
+        Write Lists functions
     */
-    public void writeHistory(){
-        historyControl.writeScanList(player.historyPath);
+    public void WriteHistory(){
+        historyControl.WriteScanList(player.historyPath);
     }
 
-    public void writeSearchResults(){
-        searchResultsControl.writeScanList(player.searchResultPath);
+    public void WriteSearchResults(){
+        searchResultsControl.WriteScanList(player.searchResultPath);
     }
 
-    public void setSearchResults(SearchResult newResults){
-        searchResultsControl.setListTo(newResults);
-        searchResultsControl.writeScanList(player.searchResultPath);
+    public void SetSearchResults(SearchResult newResults){
+        searchResultsControl.SetListTo(newResults);
+        searchResultsControl.WriteScanList(player.searchResultPath);
     }
 
-    public void writeComfortFood(){
-        comfortFoodControl.writeScanList(player.comfortFoodPath);
+    public void WriteComfortFood(){
+        comfortFoodControl.WriteScanList(player.comfortFoodPath);
     }
 
-    public void writeFeedHistory(){
-        feedHistoryControl.writeScanList(player.feedHistoryPath);
+    public void WriteFeedHistory(){
+        feedHistoryControl.WriteScanList(player.feedHistoryPath);
     }
 
     /**
-        add new Item to Lists Functions
+        Add new Item to Lists Functions
     */
-    public void addProductToHistory(Scan newItem){
+    public void AddProductToHistory(Scan newItem){
         historyControl.AddProduct(newItem);
     }
-    public void addProductToSearchResults(Scan newItem){
+    public void AddProductToSearchResults(Scan newItem){
         searchResultsControl.AddProduct(newItem);
     }
-    public void addProductToComfortFood(Scan newItem){
+    public void AddProductToComfortFood(Scan newItem){
         comfortFoodControl.AddProduct(newItem);
     }
-    public void addProductToFoodHistory(Scan newItem){
+    public void AddProductToFoodHistory(Scan newItem){
         feedHistoryControl.AddProduct(newItem);
     }
 
     /**
         Save and Reset PlayerData Functions
     */
-    public void savePlayerData(){
-        writeHistory();
-        writeSearchResults();
-        writeComfortFood();
-        writeFeedHistory();
+    public void SavePlayerData(){
+        WriteHistory();
+        WriteSearchResults();
+        WriteComfortFood();
+        WriteFeedHistory();
+        string jsonString= JsonUtility.ToJson(player);
+        File.WriteAllText(player.playerDataPath, jsonString);
     }
 
-    public void resetPlayerData(){
+    public void ReadPlayerData(){
+        string jsonText = System.IO.File.ReadAllText(player.playerDataPath);
+        Player tmpPlayer = JsonUtility.FromJson<Player>(jsonText);
+        player=tmpPlayer;
+    }
+
+    public void ResetPlayerData(){
         historyControl.ClearScanList();
         searchResultsControl.ClearScanList();
         comfortFoodControl.ClearScanList();
         feedHistoryControl.ClearScanList();
-        savePlayerData();
+        SavePlayerData();
     }
 
     /**
         otherFunctions
     */
-    public int getScanCountToday(){
-        return feedHistoryControl.getScanCountToday();
+    public int GetFeedCountToday(){
+        return feedHistoryControl.GetFeedCountToday();
     }
 }

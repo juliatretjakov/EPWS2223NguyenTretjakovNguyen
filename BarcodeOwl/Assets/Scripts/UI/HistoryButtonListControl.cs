@@ -11,7 +11,7 @@ public class HistoryButtonListControl : MonoBehaviour
     private GameObject buttonTemplate;
 
     void Start(){
-        playerData.readHistory();
+        playerData.ReadHistory();
         for (int i=0; i<playerData.historyControl.GetLength(); i++){
             GameObject button= Instantiate(buttonTemplate) as GameObject;
             button.SetActive(true);

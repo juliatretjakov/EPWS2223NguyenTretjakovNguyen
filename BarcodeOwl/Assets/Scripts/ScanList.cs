@@ -43,7 +43,7 @@ namespace OpenFoodFactsProduct{
             }
         }
 
-        public void setListTo(SearchResult newList){
+        public void SetListTo(SearchResult newList){
             Scan[] tmp=new Scan[newList.products.Count()];
             for(int i=0;i<newList.products.Count();i++){
                 Scan tmpScan=new Scan(newList.products[i].code,newList.products[i]);
@@ -57,7 +57,7 @@ namespace OpenFoodFactsProduct{
             scan = tmp;
         }
 
-        public int getScanCountToday(){
+        public int GetFeedCountToday(){
             int count=0;
             if(!isEmpty()){
                 for(int i=GetLength()-1;i>=0;i--){

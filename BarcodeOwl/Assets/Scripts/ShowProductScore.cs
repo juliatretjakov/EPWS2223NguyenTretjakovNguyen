@@ -18,13 +18,15 @@ public class ShowProductScore : MonoBehaviour
     
     // Start is called before the first frame update
     void Start(){
-        playerData.readHistory();
+        playerData.ReadHistory();
+        playerData.ReadPlayerData();
+        Debug.Log("ShowProductScore"+playerData.player.selectedScan.ToString());
         FillText();
     }
 
     void FillText()
     {
-       productNameText.text=playerData.historyControl.GetLatestScan().product.product_name;
+       productNameText.text=playerData.player.selectedScan.product.product_name;
        barCodeText.text=playerData.historyControl.GetLatestScan().code;
        ecoScoreText.text=playerData.historyControl.GetLatestScan().product.ecoscore_grade;
        nutriScoreText.text=playerData.historyControl.GetLatestScan().product.nutriscore_grade;

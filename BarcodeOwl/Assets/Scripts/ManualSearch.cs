@@ -17,12 +17,21 @@ public class ManualSearch : MonoBehaviour
 	 void Update()
     {
         if(Input.GetKeyUp(KeyCode.Return)){
-			ReadInputString();
+			if (searchInputField.text==""){
+			Debug.Log("EmptyInput");
+			}else{
+				ReadInputString();
+			}
+
 		}
     }
 
 	public void ReadInputString(){
-		mySearchControl.SendSearchRequest(searchInputField.text,1);
+		if (searchInputField.text==""){
+			Debug.Log("EmptyInput");
+		}else{
+			mySearchControl.SendSearchRequest(searchInputField.text,1);
+		}
 	}
 
 }

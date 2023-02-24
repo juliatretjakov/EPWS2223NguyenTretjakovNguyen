@@ -14,11 +14,10 @@ public class ManualSearchControl : MonoBehaviour
     private string searchURL="https://world.openfoodfacts.org/cgi/search.pl?search_terms=";
 	private string barcodeSearch ="https://world.openfoodfacts.org/api/v2/product/";
 	public PlayerControl playerData;
-	public SimpleDemo barCodeScannerControl;
+	public OpenPanel panelOpener;
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -28,45 +27,95 @@ public class ManualSearchControl : MonoBehaviour
     }
     
     public void SendSearchRequest(string searchString, int page){
-    if(searchString.All(char.IsDigit)){
-		try {
-			HttpWebRequest request= (HttpWebRequest)WebRequest.Create(barcodeSearch+searchString+"/?fields=product_name,nutriscore_grade,ecoscore_grade,image_front_url");
-			HttpWebResponse response=(HttpWebResponse)request.GetResponse();
-			StreamReader reader = new StreamReader(response.GetResponseStream());
-			string jsonData=reader.ReadToEnd();
-			Scan jsonObj = JsonUtility.FromJson<Scan>(jsonData);
-							string jsonString= JsonUtility.ToJson(jsonObj);
-            	File.WriteAllText("Assets\\Resources\\testDump.txt", jsonString);
-			playerData.addProductToHistory(jsonObj);
-            playerData.writeHistory();
-            response.Close();
-            StartCoroutine(barCodeScannerControl.StopCamera(() => {
-			SceneManager.LoadScene(2);
-		}));
-		
-        }catch(WebException e){
-            Debug.Log((int)((HttpWebResponse)e.Response).StatusCode);
-			//EcoScore.text= string.Format("{0}",(int)((HttpWebResponse)e.Response).StatusCode);
-    	    }
+		if(searchString.All(char.IsDigit)){
+			try {
+				HttpWebRequest request= (HttpWebRequest)WebRequest.Create(barcodeSearch+searchString+"/?fields=product_name,nutriscore_grade,ecoscore_grade,image_front_url");
+				HttpWebResponse response=(HttpWebResponse)request.GetResponse();
+				if(response.StatusCode==HttpStatusCode.OK){
+					StreamReader reader = new StreamReader(response.GetResponseStream());
+					string jsonData=reader.ReadToEnd();
+					Scan jsonObj = JsonUtility.FromJson<Scan>(jsonData);
+									string jsonString= JsonUtility.ToJson(jsonObj);
+						File.WriteAllText("Assets\\Resources\\testDump.txt", jsonString);
+					playerData.AddProductToHistory(jsonObj);
+					playerData.WriteHistory();
+					playerData.player.SetSelectedScan(jsonObj);
+					playerData.SavePlayerData();
+					Debug.Log("SimpleDemo"+playerData.player.selectedScan.ToString());
+				}
+				response.Close();
+				SceneManager.LoadScene(2);
+			}catch(WebException e){
+				Debug.Log((int)((HttpWebResponse)e.Response).StatusCode);
+				panelOpener.PanelOpener();
+			}
 		}else{
 			try {
 				HttpWebRequest request= (HttpWebRequest)WebRequest.Create(searchURL+searchString+"&json=1&page="+page+"&fields=code,product_name,nutriscore_grade,ecoscore_grade,image_front_url");
 				HttpWebResponse response=(HttpWebResponse)request.GetResponse();
-				StreamReader reader = new StreamReader(response.GetResponseStream());
-				string jsonData=reader.ReadToEnd();
-				SearchResult jsonObj = JsonUtility.FromJson<SearchResult>(jsonData);
-				string jsonString= JsonUtility.ToJson(jsonObj);
-            	File.WriteAllText("Assets\\Resources\\testDump.txt", jsonString);
-				Debug.Log(jsonObj.ToString());
-                playerData.setSearchResults(jsonObj);
-                StartCoroutine(barCodeScannerControl.StopCamera(() => {
-			    SceneManager.LoadScene(3);
-            	}));
-
+				if(response.StatusCode==HttpStatusCode.OK){
+					StreamReader reader = new StreamReader(response.GetResponseStream());
+					string jsonData=reader.ReadToEnd();
+					SearchResult jsonObj = JsonUtility.FromJson<SearchResult>(jsonData);
+					string jsonString= JsonUtility.ToJson(jsonObj);
+					File.WriteAllText("Assets\\Resources\\testDump.txt", jsonString);
+					Debug.Log(jsonObj.ToString());
+					playerData.SetSearchResults(jsonObj);
+				Debug.Log("SimpleDemo"+playerData.player.selectedScan.ToString());
+				}
+				response.Close();
+				SceneManager.LoadScene(3);
 			}catch(WebException e){
 				Debug.Log((int)((HttpWebResponse)e.Response).StatusCode);
-				//EcoScore.text= string.Format("{0}",(int)((HttpWebResponse)e.Response).StatusCode);
+				panelOpener.PanelOpener();
+			}
+		}
+	}
+	
+	public void SendSearchRequest(string searchString){
+		if(searchString.All(char.IsDigit)){
+			try {
+				Debug.Log("SearchControl"+searchString);
+				HttpWebRequest request= (HttpWebRequest)WebRequest.Create(barcodeSearch+searchString+"/?fields=product_name,nutriscore_grade,ecoscore_grade,image_front_url");
+				HttpWebResponse response=(HttpWebResponse)request.GetResponse();
+				if(response.StatusCode==HttpStatusCode.OK){
+					StreamReader reader = new StreamReader(response.GetResponseStream());
+					string jsonData=reader.ReadToEnd();
+					Scan jsonObj = JsonUtility.FromJson<Scan>(jsonData);
+					string jsonString= JsonUtility.ToJson(jsonObj);
+					File.WriteAllText("Assets\\Resources\\testDump.txt", jsonString);
+					playerData.AddProductToHistory(jsonObj);
+					playerData.WriteHistory();
+					playerData.player.SetSelectedScan(jsonObj);
+					playerData.SavePlayerData();
+					Debug.Log("SimpleDemo"+playerData.player.selectedScan.ToString());
 				}
+				response.Close();
+				SceneManager.LoadScene(2);
+			}catch(WebException e){
+				Debug.Log((int)((HttpWebResponse)e.Response).StatusCode);
+				panelOpener.PanelOpener();
+			}
+		}else{
+			try {
+				HttpWebRequest request= (HttpWebRequest)WebRequest.Create(searchURL+searchString+"&json=1&page=1&fields=code,product_name,nutriscore_grade,ecoscore_grade,image_front_url");
+				HttpWebResponse response=(HttpWebResponse)request.GetResponse();
+				if(response.StatusCode==HttpStatusCode.OK){
+					StreamReader reader = new StreamReader(response.GetResponseStream());
+					string jsonData=reader.ReadToEnd();
+					SearchResult jsonObj = JsonUtility.FromJson<SearchResult>(jsonData);
+					string jsonString= JsonUtility.ToJson(jsonObj);
+					File.WriteAllText("Assets\\Resources\\testDump.txt", jsonString);
+					Debug.Log(jsonObj.ToString());
+					playerData.SetSearchResults(jsonObj);
+					Debug.Log("SimpleDemo"+playerData.player.selectedScan.ToString());
+				}
+				response.Close();
+				SceneManager.LoadScene(3);
+			}catch(WebException e){
+				Debug.Log((int)((HttpWebResponse)e.Response).StatusCode);
+				panelOpener.PanelOpener();
+			}
 		}
 	}
 }

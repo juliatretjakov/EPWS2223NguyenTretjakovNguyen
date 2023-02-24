@@ -11,7 +11,7 @@ public class SearchResultsButtonListControl : MonoBehaviour
     private GameObject buttonTemplate;
 
     void Start(){
-        playerData.readSearchResults();
+        playerData.ReadSearchResults();
         for (int i=0; i<playerData.searchResultsControl.GetLength(); i++){
             GameObject button= Instantiate(buttonTemplate) as GameObject;
             button.SetActive(true);

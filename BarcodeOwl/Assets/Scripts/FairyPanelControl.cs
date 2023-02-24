@@ -11,21 +11,36 @@ public class FairyPanelControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {   
-        playerData.readFeedHistory();
-        playerData.player.addDrink();
-        playerData.player.addDrink();
-        playerData.player.addDrink();
-        playerData.player.addDrink();
-        updateScanCountText();
-        updateDrinkCountText();
+        playerData.ReadFeedHistory();
+        playerData.player.AddDrink();
+        playerData.player.AddDrink();
+        playerData.player.AddDrink();
+        playerData.player.AddDrink();
+        UpdateFeedCountText();
+        UpdateDrinkCountText();
     }
 
-    public void updateScanCountText(){
-        scanCount.text=playerData.getScanCountToday()+"/3";
+    public void UpdateFeedCountText(){
+        int feedsToday=playerData.GetFeedCountToday();
+        if(feedsToday<0){
+            scanCount.text="0/3";
+        }if(feedsToday>3){
+            scanCount.text="3/3";
+        }else{
+            scanCount.text=feedsToday+"/3";
+        }
+        
     }
 
-   public void updateDrinkCountText(){
-        drinksCount.text=playerData.player.getDrinksToday()+"/6";
+    public void UpdateDrinkCountText(){
+        int drinksToday=playerData.player.GetDrinkCountToday();
+        if(drinksToday<0){
+            drinksCount.text="0/6";
+        }if(drinksToday>6){
+            drinksCount.text="6/6";
+        }else{
+            drinksCount.text=drinksToday+"/6";
+        }
     }
 
     // Update is called once per frame

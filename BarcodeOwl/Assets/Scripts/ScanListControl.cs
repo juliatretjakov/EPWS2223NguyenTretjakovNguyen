@@ -17,7 +17,7 @@ public class ScanListControl : MonoBehaviour
            
         }
 
-        public void readScanList(string path){
+        public void ReadScanList(string path){
             string jsonText = System.IO.File.ReadAllText(path);
             myScanList = JsonUtility.FromJson<ScanList>(jsonText);
         }
@@ -39,19 +39,19 @@ public class ScanListControl : MonoBehaviour
             myScanList.AddProduct(newItem);
         }
 
-        public void setListTo(SearchResult newList){
-            myScanList.setListTo(newList);
+        public void SetListTo(SearchResult newList){
+            myScanList.SetListTo(newList);
         }
 
         public void ClearScanList(){
             myScanList.ClearScanList();
         }
 
-        public int getScanCountToday(){
-           return myScanList.getScanCountToday();
+        public int GetFeedCountToday(){
+           return myScanList.GetFeedCountToday();
         }
 
-        public void writeScanList(string path){
+        public void WriteScanList(string path){
             string jsonString= JsonUtility.ToJson(myScanList);
             File.WriteAllText(path, jsonString);
         }

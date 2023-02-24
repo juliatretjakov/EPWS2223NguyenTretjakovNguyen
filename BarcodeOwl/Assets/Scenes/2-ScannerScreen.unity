@@ -335,6 +335,7 @@ MonoBehaviour:
   Image: {fileID: 570292425}
   Audio: {fileID: 103870422}
   playerData: {fileID: 103870425}
+  panelOpener: {fileID: 0}
 --- !u!82 &103870422
 AudioSource:
   m_ObjectHideFlags: 0
@@ -458,7 +459,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerData: {fileID: 103870425}
-  barCodeScannerControl: {fileID: 103870421}
+  panelOpener: {fileID: 0}
 --- !u!114 &103870425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1536,7 +1537,6 @@ GameObject:
   - component: {fileID: 1477993553}
   - component: {fileID: 1477993556}
   - component: {fileID: 1477993558}
-  - component: {fileID: 1477993557}
   m_Layer: 0
   m_Name: 'ManualSearchButton '
   m_TagString: Untagged
@@ -1673,19 +1673,6 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
---- !u!114 &1477993557
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1477993551}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e49c704b95aee24ebd28673f698ae71, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SceneNumber: 4
 --- !u!114 &1477993558
 MonoBehaviour:
   m_ObjectHideFlags: 0
