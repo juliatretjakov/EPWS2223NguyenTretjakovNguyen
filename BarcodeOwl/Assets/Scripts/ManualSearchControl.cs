@@ -14,7 +14,7 @@ public class ManualSearchControl : MonoBehaviour
     private string searchURL="https://world.openfoodfacts.org/cgi/search.pl?search_terms=";
 	private string barcodeSearch ="https://world.openfoodfacts.org/api/v2/product/";
 	public PlayerControl playerData;
-	public OpenPanel panelOpener;
+	//public OpenPanel panelOpener;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,13 +40,12 @@ public class ManualSearchControl : MonoBehaviour
 					playerData.WriteHistory();
 					playerData.player.SetSelectedScan(jsonObj);
 					playerData.SavePlayerData();
-					Debug.Log("SimpleDemo"+playerData.player.selectedScan.ToString());
 				}
 				response.Close();
 				SceneManager.LoadScene(2);
 			}catch(WebException e){
 				Debug.Log((int)((HttpWebResponse)e.Response).StatusCode);
-				panelOpener.PanelOpener();
+			//	panelOpener.PanelOpener();
 			}
 		}else{
 			try {
@@ -65,7 +64,7 @@ public class ManualSearchControl : MonoBehaviour
 				SceneManager.LoadScene(3);
 			}catch(WebException e){
 				Debug.Log((int)((HttpWebResponse)e.Response).StatusCode);
-				panelOpener.PanelOpener();
+			//	panelOpener.PanelOpener();
 			}
 		}
 	}
@@ -86,13 +85,12 @@ public class ManualSearchControl : MonoBehaviour
 					playerData.WriteHistory();
 					playerData.player.SetSelectedScan(jsonObj);
 					playerData.SavePlayerData();
-					Debug.Log("SimpleDemo"+playerData.player.selectedScan.ToString());
 				}
 				response.Close();
 				SceneManager.LoadScene(2);
 			}catch(WebException e){
 				Debug.Log((int)((HttpWebResponse)e.Response).StatusCode);
-				panelOpener.PanelOpener();
+			//	panelOpener.PanelOpener();
 			}
 		}else{
 			try {
@@ -106,13 +104,12 @@ public class ManualSearchControl : MonoBehaviour
 					
 					Debug.Log(jsonObj.ToString());
 					playerData.SetSearchResults(jsonObj);
-					Debug.Log("SimpleDemo"+playerData.player.selectedScan.ToString());
 				}
 				response.Close();
 				SceneManager.LoadScene(3);
 			}catch(WebException e){
 				Debug.Log((int)((HttpWebResponse)e.Response).StatusCode);
-				panelOpener.PanelOpener();
+			//	panelOpener.PanelOpener();
 			}
 		}
 	}

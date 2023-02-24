@@ -10,12 +10,8 @@ public class FairyPanelControl : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {   
+    {   playerData.ReadPlayerData();
         playerData.ReadFeedHistory();
-        playerData.player.AddDrink();
-        playerData.player.AddDrink();
-        playerData.player.AddDrink();
-        playerData.player.AddDrink();
         UpdateFeedCountText();
         UpdateDrinkCountText();
     }

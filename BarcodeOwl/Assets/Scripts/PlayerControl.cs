@@ -6,10 +6,7 @@ using System.IO;
 
 public class PlayerControl : MonoBehaviour
 {   public Player player=new Player();
-    public ScanListControl historyControl;
-    public ScanListControl searchResultsControl;
-    public ScanListControl comfortFoodControl;
-    public ScanListControl feedHistoryControl;
+    public ScanListControl myScanControl;
     
     // Start is called before the first frame update
     void Start()
@@ -20,59 +17,63 @@ public class PlayerControl : MonoBehaviour
         Read Lists functions
     */
     public void ReadHistory(){
-        historyControl.ReadScanList(player.historyPath);
+        myScanControl.ReadScanList(player.historyPath);
     }
 
     public void ReadSearchResults(){
-        searchResultsControl.ReadScanList(player.searchResultPath);
+        myScanControl.ReadScanList(player.searchResultPath);
     }
 
     public void ReadComfortFood(){
-        comfortFoodControl.ReadScanList(player.comfortFoodPath);
+        myScanControl.ReadScanList(player.comfortFoodPath);
     }
 
     public void ReadFeedHistory(){
-        feedHistoryControl.ReadScanList(player.feedHistoryPath);
+        myScanControl.ReadScanList(player.feedHistoryPath);
     }
 
     /**
         Write Lists functions
     */
     public void WriteHistory(){
-        historyControl.WriteScanList(player.historyPath);
+        myScanControl.WriteScanList(player.historyPath);
     }
 
     public void WriteSearchResults(){
-        searchResultsControl.WriteScanList(player.searchResultPath);
+        myScanControl.WriteScanList(player.searchResultPath);
     }
 
     public void SetSearchResults(SearchResult newResults){
-        searchResultsControl.SetListTo(newResults);
-        searchResultsControl.WriteScanList(player.searchResultPath);
+        myScanControl.SetListTo(newResults);
+        myScanControl.WriteScanList(player.searchResultPath);
     }
 
     public void WriteComfortFood(){
-        comfortFoodControl.WriteScanList(player.comfortFoodPath);
+        myScanControl.WriteScanList(player.comfortFoodPath);
     }
 
     public void WriteFeedHistory(){
-        feedHistoryControl.WriteScanList(player.feedHistoryPath);
+        myScanControl.WriteScanList(player.feedHistoryPath);
     }
 
     /**
         Add new Item to Lists Functions
     */
     public void AddProductToHistory(Scan newItem){
-        historyControl.AddProduct(newItem);
+        ReadHistory();
+        myScanControl.AddProduct(newItem);
     }
     public void AddProductToSearchResults(Scan newItem){
-        searchResultsControl.AddProduct(newItem);
+        ReadSearchResults();
+        myScanControl.AddProduct(newItem);
     }
     public void AddProductToComfortFood(Scan newItem){
-        comfortFoodControl.AddProduct(newItem);
+        ReadComfortFood();
+        myScanControl.AddProduct(newItem);
     }
     public void AddProductToFeedHistory(Scan newItem){
-        feedHistoryControl.AddProduct(newItem);
+        ReadFeedHistory();
+        myScanControl.AddProduct(newItem);
     }
 
     /**
@@ -90,10 +91,7 @@ public class PlayerControl : MonoBehaviour
     }
 
     public void ResetPlayerData(){
-        historyControl.ClearScanList();
-        searchResultsControl.ClearScanList();
-        comfortFoodControl.ClearScanList();
-        feedHistoryControl.ClearScanList();
+        myScanControl.ClearScanList();
         SavePlayerData();
     }
 
@@ -101,6 +99,10 @@ public class PlayerControl : MonoBehaviour
         otherFunctions
     */
     public int GetFeedCountToday(){
-        return feedHistoryControl.GetFeedCountToday();
+        return myScanControl.GetFeedCountToday();
+    }
+
+    public void AddDrink(){
+        player.AddDrink();
     }
 }

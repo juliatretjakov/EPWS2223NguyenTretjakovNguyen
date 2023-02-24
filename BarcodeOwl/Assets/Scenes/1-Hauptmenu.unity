@@ -6780,6 +6780,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1437992218}
+        m_TargetAssemblyTypeName: FairyPanelControl, Assembly-CSharp
+        m_MethodName: UpdateDrinkCountText
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1437992218}
+        m_TargetAssemblyTypeName: FairyPanelControl, Assembly-CSharp
+        m_MethodName: UpdateFeedCountText
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1102392087
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8854,7 +8878,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerData: {fileID: 1683811781}
-  panelOpener: {fileID: 0}
 --- !u!1 &1322271801
 GameObject:
   m_ObjectHideFlags: 0
@@ -11804,9 +11827,6 @@ GameObject:
   - component: {fileID: 1683811774}
   - component: {fileID: 1683811778}
   - component: {fileID: 1683811781}
-  - component: {fileID: 1683811777}
-  - component: {fileID: 1683811780}
-  - component: {fileID: 1683811779}
   - component: {fileID: 1683811782}
   m_Layer: 0
   m_Name: EventSystem
@@ -11865,20 +11885,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1683811777
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1683811773}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39dcb985c76aa504aa2bca94c3f8e9d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myScanList:
-    scan: []
 --- !u!114 &1683811778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11892,34 +11898,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DialogText: {fileID: 1511632181}
---- !u!114 &1683811779
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1683811773}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39dcb985c76aa504aa2bca94c3f8e9d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myScanList:
-    scan: []
---- !u!114 &1683811780
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1683811773}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39dcb985c76aa504aa2bca94c3f8e9d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myScanList:
-    scan: []
 --- !u!114 &1683811781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11932,10 +11910,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04cea4b8c4f454f4799c68501b90c324, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  historyControl: {fileID: 1683811777}
-  searchResultsControl: {fileID: 1683811777}
-  comfortFoodControl: {fileID: 1683811777}
-  feedHistoryControl: {fileID: 1683811777}
+  myScanControl: {fileID: 1683811782}
 --- !u!114 &1683811782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12633,7 +12608,6 @@ GameObject:
   - component: {fileID: 1854514764}
   - component: {fileID: 1854514763}
   - component: {fileID: 1854514762}
-  - component: {fileID: 1854514765}
   - component: {fileID: 1854514766}
   m_Layer: 5
   m_Name: Drink
@@ -12707,9 +12681,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1854514765}
-        m_TargetAssemblyTypeName: OpenPanel, Assembly-CSharp
-        m_MethodName: PanelOpener
+      - m_Target: {fileID: 1683811781}
+        m_TargetAssemblyTypeName: PlayerControl, Assembly-CSharp
+        m_MethodName: AddDrink
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1437992218}
+        m_TargetAssemblyTypeName: FairyPanelControl, Assembly-CSharp
+        m_MethodName: UpdateDrinkCountText
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12757,19 +12743,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1854514760}
   m_CullTransparentMesh: 1
---- !u!114 &1854514765
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1854514760}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2be6227f5908a634882b7dc48bf4f67d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AnotherPanel: {fileID: 0}
 --- !u!114 &1854514766
 MonoBehaviour:
   m_ObjectHideFlags: 0

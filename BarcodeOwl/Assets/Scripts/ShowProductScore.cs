@@ -6,6 +6,7 @@ using TMPro;
 using System.Threading.Tasks;
 using UnityEngine.Networking;
 using OpenFoodFactsProduct;
+using UnityEngine.SceneManagement;
 
 public class ShowProductScore : MonoBehaviour
 {   
@@ -22,6 +23,14 @@ public class ShowProductScore : MonoBehaviour
     
     // Start is called before the first frame update
     void Start(){
+        playerData.ReadHistory();
+        playerData.ReadPlayerData();
+        FillText();
+        SetTexture();
+        SetScoreImages();
+    }
+
+    public void ReloadUI(){
         playerData.ReadHistory();
         playerData.ReadPlayerData();
         FillText();
@@ -49,8 +58,15 @@ public class ShowProductScore : MonoBehaviour
 
     }
 
-    public void SetNutriScore(){
+    public void FeedButtonClicked(){
+        playerData.AddProductToFeedHistory(playerData.player.selectedScan);
+        playerData.WriteFeedHistory();
+    }
 
+    public void AddToCompareClicked(){
+        playerData.player.AddCompare(playerData.player.selectedScan);
+        playerData.SavePlayerData();
+        SceneManager.LoadScene(4);
     }
 
     public void SetTexture(){

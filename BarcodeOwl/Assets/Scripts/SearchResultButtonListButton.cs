@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using System.Threading.Tasks;
 using UnityEngine.Networking;
+using OpenFoodFactsProduct;
 
 
 public class SearchResultButtonListButton : MonoBehaviour
@@ -14,6 +15,9 @@ public class SearchResultButtonListButton : MonoBehaviour
     private TMP_Text myText;
     [SerializeField]
     private Image myImage;
+    [SerializeField]
+    private Scan myScan;
+    public SearchResultsButtonListControl myButtonListControl;
     // Start is called before the first frame update
     public void SetText(string textString)
     {
@@ -36,6 +40,14 @@ public class SearchResultButtonListButton : MonoBehaviour
             Sprite newSprite=Sprite.Create(myTexture,new Rect(0,0,myTexture.width,myTexture.height),new Vector2(0.5f,0.5f));
             myImage.overrideSprite=newSprite;
         }
+    }
+
+    public void SetScan(Scan newScan){
+        myScan=newScan;
+    }
+
+    public void OnClick(){
+        myButtonListControl.ButtonClicked(myScan);
     }
 
 }

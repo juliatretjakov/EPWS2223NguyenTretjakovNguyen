@@ -12,11 +12,11 @@ public class HistoryButtonListControl : MonoBehaviour
 
     void Start(){
         playerData.ReadHistory();
-        for (int i=0; i<playerData.historyControl.GetLength(); i++){
+        for (int i=0; i<playerData.myScanControl.GetLength(); i++){
             GameObject button= Instantiate(buttonTemplate) as GameObject;
             button.SetActive(true);
             
-            button.GetComponent<ButtonListButton>().SetText(playerData.historyControl.GetProduct(i).product.product_name);
+            button.GetComponent<ButtonListButton>().SetText(playerData.myScanControl.GetProduct(i).product.product_name);
             button.transform.SetParent(buttonTemplate.transform.parent,false);
         }
     }

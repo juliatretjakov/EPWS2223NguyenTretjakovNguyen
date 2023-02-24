@@ -11,9 +11,11 @@ public class Player{
     public string searchResultPath="Assets\\Resources\\tmpSearchResultJSON.txt";
     public string comfortFoodPath="Assets\\Resources\\comfortFoodJSON.txt";
     public string feedHistoryPath="Assets\\Resources\\feedHistoryJSON.txt";
-    private readonly int drinksSize=10;
+    private static int drinksSize=10;
+    private static int compareSize=2;
     public Queue <DateTime> drinks=new Queue<DateTime>();
     public List <MerklisteElement> Merkliste= new List<MerklisteElement>();
+    public Scan[] compare= new Scan[compareSize];
     public Scan selectedScan;
     
     public string GetName(){
@@ -30,6 +32,14 @@ public class Player{
         }else{
             drinks.Dequeue();
             drinks.Enqueue(DateTime.Now);
+        }
+    }
+
+    public void AddCompare(Scan newScan){
+        if(compare[0].code==null||compare[0].code==""){
+            compare[0]=newScan;
+        }else if(compare[1].code==null||compare[1].code==""){
+            compare[1]=newScan;
         }
     }
 
