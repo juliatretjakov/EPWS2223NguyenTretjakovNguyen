@@ -57,7 +57,7 @@ public class ComparePanelControl : MonoBehaviour
     {
         productNameTextUnten.text=playerData.player.compare[1].product.product_name;
         barCodeTextUnten.text=playerData.player.compare[1].code;
-        SetTextureOben(playerData.player.compare[1].product.image_front_url);
+        SetTextureUnten(playerData.player.compare[1].product.image_front_url);
         productImageUnten.overrideSprite=tmpSprite;
         string ecoScore= playerData.player.compare[1].product.ecoscore_grade;
         string nutriScore= playerData.player.compare[1].product.nutriscore_grade;
@@ -109,6 +109,14 @@ public class ComparePanelControl : MonoBehaviour
         if(url!=""&&url!=null){
             StartCoroutine(GetTexture(url,() => {
 			    productImageOben.overrideSprite=tmpSprite;
+		    }));
+        }
+    }
+
+    public void SetTextureUnten(string url){
+        if(url!=""&&url!=null){
+            StartCoroutine(GetTexture(url,() => {
+			    productImageUnten.overrideSprite=tmpSprite;
 		    }));
         }
     }
