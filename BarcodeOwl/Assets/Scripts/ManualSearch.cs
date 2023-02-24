@@ -22,7 +22,6 @@ public class ManualSearch : MonoBehaviour
 			}else{
 				ReadInputString();
 			}
-
 		}
     }
 
@@ -30,7 +29,7 @@ public class ManualSearch : MonoBehaviour
 		if (searchInputField.text==""){
 			Debug.Log("EmptyInput");
 		}else{
-			mySearchControl.SendSearchRequest(searchInputField.text,1);
+			mySearchControl.SendSearchRequest(searchInputField.text);
 		}
 	}
 

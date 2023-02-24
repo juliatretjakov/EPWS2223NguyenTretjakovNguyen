@@ -17,7 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/4-SearchResults.unity
     guid: e06966e18a19f41ab9495f87ce539803
-  - enabled: 1
-    path: Assets/Scenes/4-SearchResults.unity
-    guid: 4112edf80a8530d41972609d0e852ec9
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   m_configObjects: {}

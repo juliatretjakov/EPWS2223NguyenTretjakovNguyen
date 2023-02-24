@@ -35,8 +35,7 @@ public class ManualSearchControl : MonoBehaviour
 					StreamReader reader = new StreamReader(response.GetResponseStream());
 					string jsonData=reader.ReadToEnd();
 					Scan jsonObj = JsonUtility.FromJson<Scan>(jsonData);
-									string jsonString= JsonUtility.ToJson(jsonObj);
-						File.WriteAllText("Assets\\Resources\\testDump.txt", jsonString);
+					string jsonString= JsonUtility.ToJson(jsonObj);
 					playerData.AddProductToHistory(jsonObj);
 					playerData.WriteHistory();
 					playerData.player.SetSelectedScan(jsonObj);
@@ -58,7 +57,6 @@ public class ManualSearchControl : MonoBehaviour
 					string jsonData=reader.ReadToEnd();
 					SearchResult jsonObj = JsonUtility.FromJson<SearchResult>(jsonData);
 					string jsonString= JsonUtility.ToJson(jsonObj);
-					File.WriteAllText("Assets\\Resources\\testDump.txt", jsonString);
 					Debug.Log(jsonObj.ToString());
 					playerData.SetSearchResults(jsonObj);
 				Debug.Log("SimpleDemo"+playerData.player.selectedScan.ToString());
@@ -83,7 +81,7 @@ public class ManualSearchControl : MonoBehaviour
 					string jsonData=reader.ReadToEnd();
 					Scan jsonObj = JsonUtility.FromJson<Scan>(jsonData);
 					string jsonString= JsonUtility.ToJson(jsonObj);
-					File.WriteAllText("Assets\\Resources\\testDump.txt", jsonString);
+					
 					playerData.AddProductToHistory(jsonObj);
 					playerData.WriteHistory();
 					playerData.player.SetSelectedScan(jsonObj);
@@ -105,7 +103,7 @@ public class ManualSearchControl : MonoBehaviour
 					string jsonData=reader.ReadToEnd();
 					SearchResult jsonObj = JsonUtility.FromJson<SearchResult>(jsonData);
 					string jsonString= JsonUtility.ToJson(jsonObj);
-					File.WriteAllText("Assets\\Resources\\testDump.txt", jsonString);
+					
 					Debug.Log(jsonObj.ToString());
 					playerData.SetSearchResults(jsonObj);
 					Debug.Log("SimpleDemo"+playerData.player.selectedScan.ToString());

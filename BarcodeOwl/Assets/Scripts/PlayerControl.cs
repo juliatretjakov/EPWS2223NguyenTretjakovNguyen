@@ -71,7 +71,7 @@ public class PlayerControl : MonoBehaviour
     public void AddProductToComfortFood(Scan newItem){
         comfortFoodControl.AddProduct(newItem);
     }
-    public void AddProductToFoodHistory(Scan newItem){
+    public void AddProductToFeedHistory(Scan newItem){
         feedHistoryControl.AddProduct(newItem);
     }
 
@@ -79,10 +79,6 @@ public class PlayerControl : MonoBehaviour
         Save and Reset PlayerData Functions
     */
     public void SavePlayerData(){
-        WriteHistory();
-        WriteSearchResults();
-        WriteComfortFood();
-        WriteFeedHistory();
         string jsonString= JsonUtility.ToJson(player);
         File.WriteAllText(player.playerDataPath, jsonString);
     }

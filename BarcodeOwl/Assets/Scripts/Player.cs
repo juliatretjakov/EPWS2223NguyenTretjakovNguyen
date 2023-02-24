@@ -35,12 +35,10 @@ public class Player{
 
     public int GetDrinkCountToday(){
         int count=0;
-        Debug.Log("hey ich bims");
         if(drinks!=null){
             foreach (DateTime element in drinks){
                 Debug.Log(element.ToString());
                 if(DateTime.Compare(element,DateTime.Today)>=0){
-                    Debug.Log("here we go");
                     count++;
                 }
             }
