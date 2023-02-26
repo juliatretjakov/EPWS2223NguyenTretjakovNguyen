@@ -18,7 +18,10 @@ public class SearchResultsButtonListControl : MonoBehaviour
     private bool top3;
     public OpenPanel panelOpener;
 
+    private List<GameObject> buttons;
+
     void Start(){
+        buttons=new List<GameObject>();
         if(path.Equals("history")){
             path=playerData.player.historyPath;
         }
@@ -31,8 +34,18 @@ public class SearchResultsButtonListControl : MonoBehaviour
         if(path.Equals("feed")){
             path=playerData.player.feedHistoryPath;
         }
+        RealoadUI();
 
+    }
 
+    public void RealoadUI(){
+        if(buttons.Count>0){
+            foreach(GameObject button in buttons){
+                button.SetActive(false);
+                Destroy(button.gameObject);
+            }
+            buttons.Clear();
+        }
         if(top3==true){
             LoadTop3();
         }else{
@@ -46,6 +59,7 @@ public class SearchResultsButtonListControl : MonoBehaviour
             for (int i=playerData.myScanControl.GetLength()-1; i>=0; i--){
                 GameObject button= Instantiate(buttonTemplate) as GameObject;
                 button.SetActive(true);
+                buttons.Add(button);
                 button.GetComponent<SearchResultButtonListButton>().SetText(playerData.myScanControl.GetProduct(i).product.product_name);
                 button.GetComponent<SearchResultButtonListButton>().SetTexture(playerData.myScanControl.GetProduct(i).product.image_front_url);
                 button.GetComponent<SearchResultButtonListButton>().SetScan(playerData.myScanControl.GetProduct(i));
@@ -55,6 +69,7 @@ public class SearchResultsButtonListControl : MonoBehaviour
             for (int i=0; i<playerData.myScanControl.GetLength(); i++){
                 GameObject button= Instantiate(buttonTemplate) as GameObject;
                 button.SetActive(true);
+                buttons.Add(button);
                 button.GetComponent<SearchResultButtonListButton>().SetText(playerData.myScanControl.GetProduct(i).product.product_name);
                 button.GetComponent<SearchResultButtonListButton>().SetTexture(playerData.myScanControl.GetProduct(i).product.image_front_url);
                 button.GetComponent<SearchResultButtonListButton>().SetScan(playerData.myScanControl.GetProduct(i));
@@ -75,6 +90,7 @@ public class SearchResultsButtonListControl : MonoBehaviour
                     tmp=playerData.myScanControl.GetProduct(i);
                     GameObject button= Instantiate(buttonTemplate) as GameObject;
                     button.SetActive(true);
+                    buttons.Add(button);
                     button.GetComponent<SearchResultButtonListButton>().SetText(count+": "+playerData.myScanControl.GetProduct(i).product.product_name);
                     button.GetComponent<SearchResultButtonListButton>().SetTexture(playerData.myScanControl.GetProduct(i).product.image_front_url);
                     button.GetComponent<SearchResultButtonListButton>().SetScan(playerData.myScanControl.GetProduct(i));
@@ -91,6 +107,7 @@ public class SearchResultsButtonListControl : MonoBehaviour
                     tmp=playerData.myScanControl.GetProduct(i);
                     GameObject button= Instantiate(buttonTemplate) as GameObject;
                     button.SetActive(true);
+                    buttons.Add(button);
                     button.GetComponent<SearchResultButtonListButton>().SetText(count+": "+playerData.myScanControl.GetProduct(i).product.product_name);
                     button.GetComponent<SearchResultButtonListButton>().SetTexture(playerData.myScanControl.GetProduct(i).product.image_front_url);
                     button.GetComponent<SearchResultButtonListButton>().SetScan(playerData.myScanControl.GetProduct(i));

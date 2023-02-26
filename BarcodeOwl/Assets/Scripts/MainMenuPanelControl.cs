@@ -27,7 +27,7 @@ public class MainMenuPanelControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        playerData.ReadPlayerData();
+        
         if(DateTime.Compare(DateTime.Now,nextRandomTime)>0){
         UpdateOwl();
      }
@@ -35,14 +35,14 @@ public class MainMenuPanelControl : MonoBehaviour
     }
 
     public void UpdateOwl(){
+        playerData.ReadPlayerData();
         System.Random rnd = new System.Random();
-        int seconds= rnd.Next(5,8);
-        nextRandomTime=nextRandomTime.AddSeconds(Convert.ToDouble(seconds));
+        int seconds= rnd.Next(3,5);
+        nextRandomTime=DateTime.Now.AddSeconds(Convert.ToDouble(seconds));
         if(playerData.player.sleeps){
             imageLoader.LoadOwlImage(4,owl);
             dialogbox.text="zZz zZz";
         }else{
-            
             int status = rnd.Next(1,4);
             if(status==1&&playerData.player.isHungry()){
                 imageLoader.LoadOwlImage(2,owl);
@@ -62,7 +62,7 @@ public class MainMenuPanelControl : MonoBehaviour
 
     public void ToggleSleep(){
         
-        playerData.player.sleeps=!playerData.player.sleeps;        
-
+        playerData.player.sleeps=!playerData.player.sleeps;  
+        UpdateOwl();
     }
 }
