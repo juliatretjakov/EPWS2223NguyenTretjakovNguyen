@@ -5,12 +5,19 @@ using OpenFoodFactsProduct;
 using System.IO;
 
 public class PlayerControl : MonoBehaviour
-{   public Player player=new Player();
+{   public Player player;
     public ScanListControl myScanControl;
+    public MerklisteControl myMerkliste;
     
     // Start is called before the first frame update
+    void Awake(){
+        player= new Player();
+        
+    }
     void Start()
     {
+        ReadPlayerData();
+        Debug.Log(Application.persistentDataPath);
     }
 
     /**
@@ -30,6 +37,10 @@ public class PlayerControl : MonoBehaviour
 
     public void ReadFeedHistory(){
         myScanControl.ReadScanList(player.feedHistoryPath);
+    }
+
+    public void ReadMerkliste(){
+        myMerkliste.ReadScanList(player.merklistePath);
     }
 
     /**
@@ -56,24 +67,46 @@ public class PlayerControl : MonoBehaviour
         myScanControl.WriteScanList(player.feedHistoryPath);
     }
 
+    public void WriteMerkliste(){
+        myMerkliste.WriteScanList(player.merklistePath);
+    }
+
     /**
         Add new Item to Lists Functions
     */
-    public void AddProductToHistory(Scan newItem){
+    public void AddProductToHistory(){
         ReadHistory();
-        myScanControl.AddProduct(newItem);
+        myScanControl.AddProduct(player.selectedScan);
+        WriteHistory();
     }
-    public void AddProductToSearchResults(Scan newItem){
+    public void AddProductToSearchResults(){
         ReadSearchResults();
-        myScanControl.AddProduct(newItem);
+        myScanControl.AddProduct(player.selectedScan);
+        WriteSearchResults();
     }
-    public void AddProductToComfortFood(Scan newItem){
+    public void AddProductToComfortFood(){
         ReadComfortFood();
-        myScanControl.AddProduct(newItem);
+        myScanControl.AddProduct(player.selectedScan);
+        WriteComfortFood();
     }
-    public void AddProductToFeedHistory(Scan newItem){
+    public void AddProductToFeedHistory(){
         ReadFeedHistory();
-        myScanControl.AddProduct(newItem);
+        ReadPlayerData();
+        player.FeedOwl();
+        SavePlayerData();
+        myScanControl.AddProduct(player.selectedScan);
+        WriteFeedHistory();
+    }
+    public void AddProductToMerkliste(){
+        ReadMerkliste();
+        myMerkliste.AddMerklisteElement(player.selectedScan);
+        WriteMerkliste();
+    }
+    public void AddProductToMerkliste(string newString){
+        ReadMerkliste();
+        myMerkliste.AddMerklisteElement(newString);
+        Debug.Log(myMerkliste.GetLength());
+        WriteMerkliste();
     }
 
     /**
@@ -81,17 +114,44 @@ public class PlayerControl : MonoBehaviour
     */
     public void SavePlayerData(){
         string jsonString= JsonUtility.ToJson(player);
+        Debug.Log(player.playerDataPath);
         File.WriteAllText(player.playerDataPath, jsonString);
     }
 
     public void ReadPlayerData(){
-        string jsonText = System.IO.File.ReadAllText(player.playerDataPath);
-        Player tmpPlayer = JsonUtility.FromJson<Player>(jsonText);
-        player=tmpPlayer;
+        if(File.Exists(player.playerDataPath)){
+            string jsonText = System.IO.File.ReadAllText(player.playerDataPath);
+            Player tmpPlayer = JsonUtility.FromJson<Player>(jsonText);
+            player=tmpPlayer;
+        }else{
+            SavePlayerData();
+        }
+
     }
 
     public void ResetPlayerData(){
+        ReadHistory();
         myScanControl.ClearScanList();
+        WriteHistory();
+
+        ReadSearchResults();
+        myScanControl.ClearScanList();
+        WriteSearchResults();
+
+        ReadComfortFood();
+        myScanControl.ClearScanList();
+        WriteComfortFood();
+
+        ReadFeedHistory();
+        myScanControl.ClearScanList();
+        WriteFeedHistory();
+
+        ReadMerkliste();
+        myMerkliste.ClearScanList();
+        WriteMerkliste();
+
+        Player tmpPlayer= new Player();
+        player=tmpPlayer;
         SavePlayerData();
     }
 
@@ -105,4 +165,17 @@ public class PlayerControl : MonoBehaviour
     public void AddDrink(){
         player.AddDrink();
     }
+
+    public string GetAvgEcoPastSevenDays(){
+        return myScanControl.GetAvgEcoPastSevenDays();
+    }
+    
+    public string GetAvgNutriPastSevenDays(){
+        return myScanControl.GetAvgNutriPastSevenDays();
+    }
+
+    public void SortListBestEcoFirst(){
+        myScanControl.SortListBestEcoFirst();
+    }
+
 }

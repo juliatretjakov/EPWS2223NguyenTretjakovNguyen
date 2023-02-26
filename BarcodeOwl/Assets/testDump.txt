@@ -1,0 +1,1 @@
+{"code":"5411188116905","product":{"product_name":"Soya Banana","ecoscore_grade":"b","nutriscore_grade":"b","code":"","image_front_url":"https://images.openfoodfacts.org/images/products/541/118/811/6905/front_de.93.400.jpg"},"scanTime":""}

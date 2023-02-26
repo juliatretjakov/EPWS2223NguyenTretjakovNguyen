@@ -27,6 +27,7 @@ public class SimpleDemo : MonoBehaviour {
 	{
 		Screen.autorotateToPortrait = false;
 		Screen.autorotateToPortraitUpsideDown = false;
+
 	}
 
 	void Start () {
@@ -35,6 +36,7 @@ public class SimpleDemo : MonoBehaviour {
 		BarcodeScanner.Camera.Play();
 
 		playerData.ReadHistory();
+		playerData.ReadPlayerData();
 		// Display the camera texture through a RawImage
 		BarcodeScanner.OnReady += (sender, arg) => {
 			// Set Orientation & Texture
@@ -103,15 +105,14 @@ public class SimpleDemo : MonoBehaviour {
 				StreamReader reader = new StreamReader(response.GetResponseStream());
 				string jsonData=reader.ReadToEnd();
 				Scan jsonObj = JsonUtility.FromJson<Scan>(jsonData);
-				playerData.AddProductToHistory(jsonObj);
-				playerData.WriteHistory();
 				playerData.player.SetSelectedScan(jsonObj);
+				playerData.AddProductToHistory();
 				playerData.SavePlayerData();
 			}
 
 			response.Close();
 		StartCoroutine(StopCamera(() => {
-			SceneManager.LoadScene(2);
+			SceneManager.LoadScene(5);
 		}));
 		}catch(WebException e){
             Debug.Log((int)((HttpWebResponse)e.Response).StatusCode);
@@ -138,16 +139,31 @@ public class SimpleDemo : MonoBehaviour {
 	{
 		// Try to stop the camera before loading another scene
 		StartCoroutine(StopCamera(() => {
-			SceneManager.LoadScene(0);
+			SceneManager.LoadScene(1);
 		}));
 	}
 
 	public void ClickHistory(){
 				// Try to stop the camera before loading another scene
 		StartCoroutine(StopCamera(() => {
-			SceneManager.LoadScene(4);
+			SceneManager.LoadScene(3);
 		}));
 	}
+
+	public void ClickSearchBarCode(){
+		// Try to stop the camera before loading another scene
+		StartCoroutine(StopCamera(() => {
+		SceneManager.LoadScene(5);
+		}));
+	}
+
+	public void ClickSearchText(){
+		// Try to stop the camera before loading another scene
+		StartCoroutine(StopCamera(() => {
+		SceneManager.LoadScene(4);
+		}));
+	}
+
 
 
 	/// <summary>

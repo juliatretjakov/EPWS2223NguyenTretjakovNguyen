@@ -8,6 +8,7 @@ public class ManualSearch : MonoBehaviour
 {
 	public ManualSearchControl mySearchControl;
 	public TMP_InputField searchInputField;
+	
     // Start is called before the first frame update
     void Start()
     {

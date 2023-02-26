@@ -8,6 +8,7 @@ public class MerklistePanelControl : MonoBehaviour
     public PlayerControl playerData;
     public ManualSearchControl mySearchControl;
     public TMP_InputField inputField;
+
     [SerializeField]
     private GameObject buttonTemplate;
 
@@ -17,11 +18,7 @@ public class MerklistePanelControl : MonoBehaviour
         buttons=new List<GameObject>();
 
         playerData.ReadPlayerData();
-
-        playerData.player.AddMerklisteElement("Tomate");
-        playerData.player.AddMerklisteElement("Ei");
-        playerData.player.AddMerklisteElement("Zwiebeln");
-
+        playerData.ReadMerkliste();
         UpdateMerkliste();
     }
     
@@ -35,25 +32,29 @@ public class MerklistePanelControl : MonoBehaviour
             buttons.Clear();
         }
         if(inputField.text==""){
-            foreach (MerklisteElement element in playerData.player.Merkliste){
-                GameObject button= Instantiate(buttonTemplate) as GameObject;
-                buttons.Add(button);
-                button.SetActive(true);
-                button.GetComponent<MerklisteButton>().SetText(element.product_name);
-                button.GetComponent<MerklisteButton>().SetToggle(element.toggle);
-                button.GetComponent<MerklisteButton>().SetBarCode(element.barCode);
-                button.transform.SetParent(buttonTemplate.transform.parent,false);
-            }
-        }else{
-            foreach (MerklisteElement element in playerData.player.Merkliste){
-                if(element.product_name.ToUpper().Contains(inputField.text.ToUpper())){
+            if (!playerData.myMerkliste.isEmpty()){
+                for (int i=0; i<playerData.myMerkliste.GetLength();i++){
                     GameObject button= Instantiate(buttonTemplate) as GameObject;
                     buttons.Add(button);
                     button.SetActive(true);
-                    button.GetComponent<MerklisteButton>().SetText(element.product_name);
-                    button.GetComponent<MerklisteButton>().SetToggle(element.toggle);
-                    button.GetComponent<MerklisteButton>().SetBarCode(element.barCode);
+                    button.GetComponent<MerklisteButton>().SetText(playerData.myMerkliste.GetProduct(i).myScan.product.product_name);
+                    button.GetComponent<MerklisteButton>().SetToggle(playerData.myMerkliste.GetProduct(i).toggle);
+                    button.GetComponent<MerklisteButton>().SetBarCode(playerData.myMerkliste.GetProduct(i).myScan.code);
                     button.transform.SetParent(buttonTemplate.transform.parent,false);
+                }
+            }
+        }else{
+            if (!playerData.myMerkliste.isEmpty()){
+                for (int i=0; i<playerData.myMerkliste.GetLength();i++){
+                    if(playerData.myMerkliste.GetProduct(i).myScan.product.product_name.ToUpper().Contains(inputField.text.ToUpper())){
+                        GameObject button= Instantiate(buttonTemplate) as GameObject;
+                        buttons.Add(button);
+                        button.SetActive(true);
+                        button.GetComponent<MerklisteButton>().SetText(playerData.myMerkliste.GetProduct(i).myScan.product.product_name);
+                        button.GetComponent<MerklisteButton>().SetToggle(playerData.myMerkliste.GetProduct(i).toggle);
+                        button.GetComponent<MerklisteButton>().SetBarCode(playerData.myMerkliste.GetProduct(i).myScan.code);
+                        button.transform.SetParent(buttonTemplate.transform.parent,false);
+                    }
                 }
             }
         }
@@ -61,7 +62,7 @@ public class MerklistePanelControl : MonoBehaviour
     }
 
     public void AddMerklisteElement(string newNote){
-        playerData.player.AddMerklisteElement(newNote);
+        playerData.AddProductToMerkliste(newNote);
     }
 
     public void ButtonClicked(string barCode){

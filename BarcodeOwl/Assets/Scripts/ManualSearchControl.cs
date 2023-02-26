@@ -14,10 +14,12 @@ public class ManualSearchControl : MonoBehaviour
     private string searchURL="https://world.openfoodfacts.org/cgi/search.pl?search_terms=";
 	private string barcodeSearch ="https://world.openfoodfacts.org/api/v2/product/";
 	public PlayerControl playerData;
-	//public OpenPanel panelOpener;
+	[SerializeField] SimpleDemo scannerControl;
+	[SerializeField] OpenPanel panelOpener;
     // Start is called before the first frame update
     void Start()
     {
+		playerData.ReadPlayerData();
     }
 
     // Update is called once per frame
@@ -35,17 +37,18 @@ public class ManualSearchControl : MonoBehaviour
 					StreamReader reader = new StreamReader(response.GetResponseStream());
 					string jsonData=reader.ReadToEnd();
 					Scan jsonObj = JsonUtility.FromJson<Scan>(jsonData);
-					string jsonString= JsonUtility.ToJson(jsonObj);
-					playerData.AddProductToHistory(jsonObj);
-					playerData.WriteHistory();
 					playerData.player.SetSelectedScan(jsonObj);
+					playerData.AddProductToHistory();
 					playerData.SavePlayerData();
 				}
 				response.Close();
-				SceneManager.LoadScene(2);
+				if(scannerControl!=null){
+					scannerControl.ClickSearchBarCode();
+				}else if(panelOpener!=null){
+					panelOpener.PanelOpener();
+				}
 			}catch(WebException e){
 				Debug.Log((int)((HttpWebResponse)e.Response).StatusCode);
-			//	panelOpener.PanelOpener();
 			}
 		}else{
 			try {
@@ -55,16 +58,16 @@ public class ManualSearchControl : MonoBehaviour
 					StreamReader reader = new StreamReader(response.GetResponseStream());
 					string jsonData=reader.ReadToEnd();
 					SearchResult jsonObj = JsonUtility.FromJson<SearchResult>(jsonData);
-					string jsonString= JsonUtility.ToJson(jsonObj);
-					Debug.Log(jsonObj.ToString());
 					playerData.SetSearchResults(jsonObj);
-				Debug.Log("SimpleDemo"+playerData.player.selectedScan.ToString());
 				}
 				response.Close();
-				SceneManager.LoadScene(3);
+				if(scannerControl!=null){
+					scannerControl.ClickSearchText();
+				}else{
+					SceneManager.LoadScene(4);
+				}
 			}catch(WebException e){
 				Debug.Log((int)((HttpWebResponse)e.Response).StatusCode);
-			//	panelOpener.PanelOpener();
 			}
 		}
 	}
@@ -79,15 +82,16 @@ public class ManualSearchControl : MonoBehaviour
 					StreamReader reader = new StreamReader(response.GetResponseStream());
 					string jsonData=reader.ReadToEnd();
 					Scan jsonObj = JsonUtility.FromJson<Scan>(jsonData);
-					string jsonString= JsonUtility.ToJson(jsonObj);
-					
-					playerData.AddProductToHistory(jsonObj);
-					playerData.WriteHistory();
 					playerData.player.SetSelectedScan(jsonObj);
+					playerData.AddProductToHistory();
 					playerData.SavePlayerData();
 				}
 				response.Close();
-				SceneManager.LoadScene(2);
+				if(scannerControl!=null){
+					scannerControl.ClickSearchBarCode();
+				}else if(panelOpener!=null){
+					panelOpener.PanelOpener();
+				}
 			}catch(WebException e){
 				Debug.Log((int)((HttpWebResponse)e.Response).StatusCode);
 			//	panelOpener.PanelOpener();
@@ -100,13 +104,14 @@ public class ManualSearchControl : MonoBehaviour
 					StreamReader reader = new StreamReader(response.GetResponseStream());
 					string jsonData=reader.ReadToEnd();
 					SearchResult jsonObj = JsonUtility.FromJson<SearchResult>(jsonData);
-					string jsonString= JsonUtility.ToJson(jsonObj);
-					
-					Debug.Log(jsonObj.ToString());
 					playerData.SetSearchResults(jsonObj);
 				}
 				response.Close();
-				SceneManager.LoadScene(3);
+				if(scannerControl!=null){
+					scannerControl.ClickSearchText();
+				}else{
+					SceneManager.LoadScene(4);
+				}
 			}catch(WebException e){
 				Debug.Log((int)((HttpWebResponse)e.Response).StatusCode);
 			//	panelOpener.PanelOpener();

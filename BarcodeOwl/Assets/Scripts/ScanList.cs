@@ -10,13 +10,13 @@ namespace OpenFoodFactsProduct{
     public class ScanList{
 
         public Scan[] scan;
+        ScoreConverter convertScore;
 
         public Scan GetProduct(int i){
             return scan[i];
         }
 
         public int GetLength(){
-            Debug.Log(scan.Count());
             return scan.Count();  
         }
 
@@ -63,12 +63,81 @@ namespace OpenFoodFactsProduct{
                 for(int i=GetLength()-1;i>=0;i--){
                     if(DateTime.Compare(scan[i].GetScanTimeAsDateTime(),DateTime.Today)>=0){
                         count++;
+                    }else{
+                        break;
                     }
                 }
             }
             return count;
         }
 
+        public string GetAvgEcoPastSevenDays(){
+            double count=0;
+            double total=0;
+            double avg; 
+            if(!isEmpty()){
+                for(int i=GetLength()-1;i>=0;i--){
+                    if(DateTime.Compare(scan[i].GetScanTimeAsDateTime(),DateTime.Today.AddDays(-7))>=0){
+                        int scoreNumber=convertScore.GetScoreAsNumber(scan[i].product.ecoscore_grade);
+                        count += scoreNumber;
+                        if(scoreNumber!=0){
+                            total ++;
+                        }
+                    }else{
+                        break;
+                    }
+                }
+            }
+            if(total>0){
+                avg=Math.Floor(count/total);
+                int result=Convert.ToInt32(avg);
+                return convertScore.GetNumberToScore(result);
+            }else{
+                return "";
+            }
+        }
+
+        public string GetAvgNutriPastSevenDays(){
+            double count=0;
+            double total=0;
+            double avg; 
+            if(!isEmpty()){
+                for(int i=GetLength()-1;i>=0;i--){
+                    if(DateTime.Compare(scan[i].GetScanTimeAsDateTime(),DateTime.Today.AddDays(-7))>=0){
+                        int scoreNumber=convertScore.GetScoreAsNumber(scan[i].product.nutriscore_grade);
+                        count += scoreNumber;
+                        Debug.Log(scoreNumber);
+                        if(scoreNumber!=0){
+                            total ++;
+                        }
+                    }else{
+                        break;
+                    }
+                }
+            }
+            if(total>0){
+                avg=Math.Floor(count/total);
+                int result=Convert.ToInt32(avg);
+                return convertScore.GetNumberToScore(result);
+            }else{
+                return "";
+            }
+
+        }
+
+        public void SortListBestEcoFirst(){
+            int n = GetLength();
+            for (int i = 0; i < n - 1; i++){
+                for (int j = 0; j < n - i - 1; j++){
+                    if (convertScore.GetScoreAsNumber(scan[j].product.ecoscore_grade) < convertScore.GetScoreAsNumber(scan[j + 1].product.ecoscore_grade)){
+                        // swap temp and arr[i]
+                        Scan temp = scan[j];
+                        scan[j] = scan[j + 1];
+                        scan[j + 1] = temp;
+                    }
+                }
+            }
+        }
 
         private bool isEmpty(){
             if(GetLength()<=0){

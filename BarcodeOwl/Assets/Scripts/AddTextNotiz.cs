@@ -32,11 +32,12 @@ public class AddTextNotiz: MonoBehaviour
 		if (inputField.text==""){
 			Debug.Log("EmptyInput");
 		}else{
-			myPlayerControl.player.AddMerklisteElement(inputField.text);
+			string input=inputField.text;
+			Debug.Log(input);
+			myPlayerControl.AddProductToMerkliste(input);
             inputField.text="";
             myPanelControl.UpdateMerkliste();
             panelOpener.PanelOpener();
-
 		}
 	}
 

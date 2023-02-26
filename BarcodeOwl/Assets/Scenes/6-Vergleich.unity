@@ -238,10 +238,10 @@ RectTransform:
   m_Father: {fileID: 1277481128}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 360, y: 640}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &249135425
 MonoBehaviour:
@@ -369,6 +369,7 @@ GameObject:
   - component: {fileID: 304829441}
   - component: {fileID: 304829440}
   - component: {fileID: 304829439}
+  - component: {fileID: 304829442}
   m_Layer: 5
   m_Name: HistorieUnten
   m_TagString: Untagged
@@ -439,7 +440,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 304829440}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 304829442}
+        m_TargetAssemblyTypeName: OpenScene, Assembly-CSharp
+        m_MethodName: sceneOpener
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &304829440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -478,6 +491,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 304829437}
   m_CullTransparentMesh: 1
+--- !u!114 &304829442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 304829437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e49c704b95aee24ebd28673f698ae71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SceneNumber: 3
 --- !u!1 &331026028
 GameObject:
   m_ObjectHideFlags: 0
@@ -514,9 +540,9 @@ RectTransform:
   m_Father: {fileID: 249135424}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -60, y: -40}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 120, y: 280}
   m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &331026030
@@ -562,7 +588,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 331026031}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 331026033}
+        m_TargetAssemblyTypeName: OpenScene, Assembly-CSharp
+        m_MethodName: sceneOpener
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1474169195}
+        m_TargetAssemblyTypeName: ComparePanelControl, Assembly-CSharp
+        m_MethodName: fixSelectedScan
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &331026031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -613,7 +663,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e49c704b95aee24ebd28673f698ae71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SceneNumber: 0
+  SceneNumber: 1
 --- !u!1 &339400009
 GameObject:
   m_ObjectHideFlags: 0
@@ -1247,7 +1297,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 784931552}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1474169195}
+        m_TargetAssemblyTypeName: ComparePanelControl, Assembly-CSharp
+        m_MethodName: AddMerklisteButtonOben
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &784931552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1628,7 +1690,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e49c704b95aee24ebd28673f698ae71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SceneNumber: 1
+  SceneNumber: 2
 --- !u!114 &918255093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1672,7 +1734,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 918255094}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 918255092}
+        m_TargetAssemblyTypeName: OpenScene, Assembly-CSharp
+        m_MethodName: sceneOpener
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &918255094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1794,7 +1868,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 934802360}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 934802362}
+        m_TargetAssemblyTypeName: OpenScene, Assembly-CSharp
+        m_MethodName: sceneOpener
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &934802360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1845,7 +1931,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e49c704b95aee24ebd28673f698ae71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SceneNumber: 1
+  SceneNumber: 2
 --- !u!1 &939358176
 GameObject:
   m_ObjectHideFlags: 0
@@ -2229,6 +2315,7 @@ GameObject:
   - component: {fileID: 1006641913}
   - component: {fileID: 1006641912}
   - component: {fileID: 1006641911}
+  - component: {fileID: 1006641914}
   m_Layer: 5
   m_Name: HistorieOben
   m_TagString: Untagged
@@ -2299,7 +2386,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1006641912}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1006641914}
+        m_TargetAssemblyTypeName: OpenScene, Assembly-CSharp
+        m_MethodName: sceneOpener
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1006641912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2338,6 +2437,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1006641909}
   m_CullTransparentMesh: 1
+--- !u!114 &1006641914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1006641909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e49c704b95aee24ebd28673f698ae71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SceneNumber: 3
 --- !u!1 &1007839768
 GameObject:
   m_ObjectHideFlags: 0
@@ -2540,11 +2652,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 0
+  m_ReferenceResolution: {x: 360, y: 640}
+  m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
@@ -2763,9 +2875,9 @@ RectTransform:
   m_Father: {fileID: 249135424}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 40}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -280}
   m_SizeDelta: {x: 240, y: 432}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1400366943
@@ -2888,7 +3000,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1430984527}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1474169195}
+        m_TargetAssemblyTypeName: ComparePanelControl, Assembly-CSharp
+        m_MethodName: ShowProductButtonUnten
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1430984527
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3077,6 +3201,7 @@ GameObject:
   - component: {fileID: 1474169193}
   - component: {fileID: 1474169195}
   - component: {fileID: 1474169196}
+  - component: {fileID: 1474169197}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -3161,6 +3286,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myScanControl: {fileID: 1474169193}
+  myMerkliste: {fileID: 1474169197}
 --- !u!114 &1474169195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3201,6 +3327,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa393e28b9012494e989c0a771602429, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1474169197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1474169189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe4e10ad35e4f8442bc3c1f41fb57f79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myMerkliste:
+    merkliste: []
 --- !u!1 &1480732625
 GameObject:
   m_ObjectHideFlags: 0
@@ -3416,7 +3556,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1751222082}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1474169195}
+        m_TargetAssemblyTypeName: ComparePanelControl, Assembly-CSharp
+        m_MethodName: AddMerklisteButtonUnten
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1751222082
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3467,6 +3619,7 @@ GameObject:
   - component: {fileID: 1810726287}
   - component: {fileID: 1810726286}
   - component: {fileID: 1810726285}
+  - component: {fileID: 1810726288}
   m_Layer: 5
   m_Name: BackButton
   m_TagString: Untagged
@@ -3490,9 +3643,9 @@ RectTransform:
   m_Father: {fileID: 249135424}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 60, y: -40}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -120, y: 280}
   m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1810726285
@@ -3538,7 +3691,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1810726286}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1474169195}
+        m_TargetAssemblyTypeName: ComparePanelControl, Assembly-CSharp
+        m_MethodName: fixSelectedScan
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1810726288}
+        m_TargetAssemblyTypeName: OpenScene, Assembly-CSharp
+        m_MethodName: sceneOpener
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1810726286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3577,6 +3754,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1810726283}
   m_CullTransparentMesh: 1
+--- !u!114 &1810726288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1810726283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e49c704b95aee24ebd28673f698ae71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SceneNumber: 5
 --- !u!1 &1845571395
 GameObject:
   m_ObjectHideFlags: 0
@@ -3743,9 +3933,9 @@ RectTransform:
   m_Father: {fileID: 249135424}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 512}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 192}
   m_SizeDelta: {x: 112, y: 28}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1906094064
@@ -4004,7 +4194,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2081121491}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1474169195}
+        m_TargetAssemblyTypeName: ComparePanelControl, Assembly-CSharp
+        m_MethodName: ShowProductButtonOben
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2081121491
 MonoBehaviour:
   m_ObjectHideFlags: 0

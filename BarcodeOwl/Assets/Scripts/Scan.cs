@@ -13,6 +13,12 @@ namespace OpenFoodFactsProduct{
             public Product product;
             public string scanTime;
 
+            public Scan(){
+                this.product=new Product();
+                this.code="";
+                this.scanTime=DateTime.MinValue.ToString("f",CultureInfo.GetCultureInfo("de-DE"));
+            }
+
             public Scan(string code,Product product,string scanTime){
                 this.product=product;
                 this.code=code;

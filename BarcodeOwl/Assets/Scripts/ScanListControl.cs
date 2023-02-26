@@ -18,8 +18,13 @@ public class ScanListControl : MonoBehaviour
         }
 
         public void ReadScanList(string path){
+            if(File.Exists(path)){
             string jsonText = System.IO.File.ReadAllText(path);
             myScanList = JsonUtility.FromJson<ScanList>(jsonText);
+            }else{
+                WriteScanList(path);
+            }
+
         }
 
         public Scan GetProduct(int i){
@@ -49,6 +54,17 @@ public class ScanListControl : MonoBehaviour
 
         public int GetFeedCountToday(){
            return myScanList.GetFeedCountToday();
+        }
+
+        public string GetAvgEcoPastSevenDays(){
+            return myScanList.GetAvgEcoPastSevenDays();
+        }
+
+        public string GetAvgNutriPastSevenDays(){
+            return myScanList.GetAvgNutriPastSevenDays();
+        }
+        public void SortListBestEcoFirst(){
+            myScanList.SortListBestEcoFirst();
         }
 
         public void WriteScanList(string path){

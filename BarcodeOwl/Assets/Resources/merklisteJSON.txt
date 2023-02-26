@@ -1,1 +1,1 @@
-{}
+{"merkliste":[{"myScan":{"code":"9002490100070","product":{"product_name":"Red Bull","ecoscore_grade":"not-applicable","nutriscore_grade":"e","code":"9002490100070","image_front_url":"https://images.openfoodfacts.org/images/products/900/249/010/0070/front_en.245.400.jpg"},"scanTime":"Sonntag, 26. Februar 2023 03:41"},"toggle":false}]}

@@ -31,20 +31,23 @@ public class ComparePanelControl : MonoBehaviour
     public PlayerControl playerData;
     public LoadScoreImage scoreImageLoader;
     private Sprite tmpSprite;
+    private Scan tmpSelectedScan;
     // Start is called before the first frame update
     void Start()
     {
+        playerData.ReadPlayerData();
+        tmpSelectedScan=playerData.player.selectedScan;
         ReloadUI();
     }
 
     public void LoadProduktkarteOben()
     {
-        productNameTextOben.text=playerData.player.compare[0].product.product_name;
-        barCodeTextOben.text=playerData.player.compare[0].code;
-        SetTextureOben(playerData.player.compare[0].product.image_front_url);
+        productNameTextOben.text=playerData.player.compareScan1.product.product_name;
+        barCodeTextOben.text=playerData.player.compareScan1.code;
+        SetTextureOben(playerData.player.compareScan1.product.image_front_url);
         
-        string ecoScore= playerData.player.compare[0].product.ecoscore_grade;
-        string nutriScore= playerData.player.compare[0].product.nutriscore_grade;
+        string ecoScore= playerData.player.compareScan1.product.ecoscore_grade;
+        string nutriScore= playerData.player.compareScan1.product.nutriscore_grade;
         if(ecoScore!=null&&ecoScore!=""){
         	scoreImageLoader.LoadImage(ecoScore,ecoScoreImageOben);
         }
@@ -55,12 +58,12 @@ public class ComparePanelControl : MonoBehaviour
     
     public void LoadProduktkarteUnten()
     {
-        productNameTextUnten.text=playerData.player.compare[1].product.product_name;
-        barCodeTextUnten.text=playerData.player.compare[1].code;
-        SetTextureUnten(playerData.player.compare[1].product.image_front_url);
+        productNameTextUnten.text=playerData.player.compareScan2.product.product_name;
+        barCodeTextUnten.text=playerData.player.compareScan2.code;
+        SetTextureUnten(playerData.player.compareScan2.product.image_front_url);
         productImageUnten.overrideSprite=tmpSprite;
-        string ecoScore= playerData.player.compare[1].product.ecoscore_grade;
-        string nutriScore= playerData.player.compare[1].product.nutriscore_grade;
+        string ecoScore= playerData.player.compareScan2.product.ecoscore_grade;
+        string nutriScore= playerData.player.compareScan2.product.nutriscore_grade;
         if(ecoScore!=null&&ecoScore!=""){
         	scoreImageLoader.LoadImage(ecoScore,ecoScoreImageUnten);
         }
@@ -72,37 +75,63 @@ public class ComparePanelControl : MonoBehaviour
 
     public void ReloadUI(){
         playerData.ReadPlayerData();
-        if(playerData.player.compare[0].code==null||playerData.player.compare[0].code==""){
+        if(playerData.player.compareScan1.code==null||playerData.player.compareScan1.code.Equals("")){
             backgroundUIOben.SetActive(true);
             produktkarteOben.SetActive(false);
         }else{
             backgroundUIOben.SetActive(false);
-            playerData.player.selectedScan=playerData.player.compare[0];
+            playerData.player.selectedScan=playerData.player.compareScan1;
             LoadProduktkarteOben();
             produktkarteOben.SetActive(true);
         }
-        if(playerData.player.compare[1].code==null||playerData.player.compare[1].code==""){
+        if(playerData.player.compareScan2.code==null||playerData.player.compareScan2.code.Equals("")){
             backgroundUIUnten.SetActive(true);
             produktkarteUnten.SetActive(false);
         }else{
             backgroundUIUnten.SetActive(false);
-            playerData.player.selectedScan=playerData.player.compare[1];
+            playerData.player.selectedScan=playerData.player.compareScan2;
             LoadProduktkarteUnten();
             produktkarteUnten.SetActive(true);
         }
     }
 
     public void RemoveOben(){
-        playerData.player.compare[0]=null;
+        playerData.player.compareScan1=null;
         playerData.SavePlayerData();
         ReloadUI();    
     }
+
+    public void ShowProductButtonOben(){
+        playerData.player.selectedScan=playerData.player.compareScan1;
+        playerData.SavePlayerData();
+        SceneManager.LoadScene(5);
+    }
+    public void ShowProductButtonUnten(){
+        playerData.player.selectedScan=playerData.player.compareScan2;
+        playerData.SavePlayerData();
+        SceneManager.LoadScene(5);
+    }
+    public void AddMerklisteButtonOben(){
+        playerData.player.SetSelectedScan(playerData.player.compareScan1);
+        playerData.AddProductToMerkliste();
+        playerData.SavePlayerData();
+    }
+    public void AddMerklisteButtonUnten(){
+        playerData.player.SetSelectedScan(playerData.player.compareScan2);
+        playerData.AddProductToMerkliste();
+        playerData.SavePlayerData();
+    }
+
     public void RemoveUnten(){
-        playerData.player.compare[1]=null;
+        playerData.player.compareScan2=null;
         playerData.SavePlayerData();
         ReloadUI();   
     }
 
+    public void fixSelectedScan(){
+        playerData.player.selectedScan=tmpSelectedScan;
+        playerData.SavePlayerData();
+    }
 
 
     public void SetTextureOben(string url){

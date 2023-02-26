@@ -25,6 +25,7 @@ public class ShowProductScore : MonoBehaviour
     void Start(){
         playerData.ReadHistory();
         playerData.ReadPlayerData();
+        Debug.Log(playerData.player.selectedScan.code);
         FillText();
         SetTexture();
         SetScoreImages();
@@ -59,14 +60,17 @@ public class ShowProductScore : MonoBehaviour
     }
 
     public void FeedButtonClicked(){
-        playerData.AddProductToFeedHistory(playerData.player.selectedScan);
+        playerData.AddProductToFeedHistory();
         playerData.WriteFeedHistory();
+        playerData.player.FeedOwl();
+        playerData.SavePlayerData();
     }
 
     public void AddToCompareClicked(){
+        playerData.ReadPlayerData();
         playerData.player.AddCompare(playerData.player.selectedScan);
         playerData.SavePlayerData();
-        SceneManager.LoadScene(4);
+        SceneManager.LoadScene(6);
     }
 
     public void SetTexture(){
