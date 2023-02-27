@@ -1,5 +1,4 @@
-<img width="1684" alt="Audit4_Poster" src="https://user-images.githubusercontent.com/56263456/221439612-d419d4cf-6ec1-4c94-90cf-51b72fe97b08.png">
-
+<img width="1684" alt="Frame 1" src="https://user-images.githubusercontent.com/56263456/221575211-eec13732-0650-4ce4-85ed-7a95ef74ceec.png">
 
 
 [Implementiert mit Unity](https://unity.com) 
